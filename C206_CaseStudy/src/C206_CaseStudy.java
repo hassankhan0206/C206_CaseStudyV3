@@ -10,7 +10,6 @@ public class C206_CaseStudy {
 		ArrayList<CCA> ccaList = new ArrayList<CCA>();
 		ArrayList<User> userList = new ArrayList<User>();
 		ArrayList<Application> appList = new ArrayList<Application>();
-		ArrayList<Member> memberList = new ArrayList<Member>();
 
 		ccaList.add(new CCA("NPCC", "NPCC is a fulfilling and enriching co-curricular activity which allows cadets to learn and grow significantly in personal competencies and leadership."
 				, "Must have discipline!", 4));
@@ -87,7 +86,7 @@ public class C206_CaseStudy {
 						} else if (tOption == 3) {
 							C206_CaseStudy.updateCCA(ccaList);
 						} else if (tOption == 4) {
-							C206_CaseStudy.viewAllMembers(memberList);
+							C206_CaseStudy.viewCCA(ccaList);
 						} else if (tOption == 5) {
 							C206_CaseStudy.appStatus(appList); 
 						} else if (tOption == 6) {
@@ -102,7 +101,6 @@ public class C206_CaseStudy {
 		}
 	}
 
-
 	public static void studentMenu() {
 		C206_CaseStudy.setHeader("CCA APPLICATION APP");
 		Helper.line(80, "-");
@@ -112,21 +110,18 @@ public class C206_CaseStudy {
 		Helper.line(80, "-");
 	}
 
- 
-
 	public static void teacherMenu() {
 		C206_CaseStudy.setHeader("CCA APPLICATION APP");
 		Helper.line(80, "-");
 		System.out.println("1. Add CCA");
 		System.out.println("2. Delete CCA");
 		System.out.println("3. Update CCA");
-		System.out.println("4. Approve request");
-		System.out.println("5. View application status");
+		System.out.println("4. View CCA");
+		System.out.println("5. Update application status");
+		System.out.println("6. View applications status");
 		System.out.println("9. Quit");
 		Helper.line(80, "-");
 	}
-
- 
 
 	public static void adminMenu() {
 		C206_CaseStudy.setHeader("CCA APPLICATION APP");
@@ -141,15 +136,11 @@ public class C206_CaseStudy {
 		Helper.line(80, "-");
 	}
 
- 
-
 	public static void setHeader(String header) {
 		Helper.line(80, "-");
 		System.out.println(header);
 		Helper.line(80, "-");
 	}
-
- 
 
 	public static String showAvailability(boolean isAvailable) {
 		String avail;
@@ -162,22 +153,9 @@ public class C206_CaseStudy {
 		return avail;
 	}
 
- 
-	public static String retrieveAllCCA(ArrayList<CCA> ccaList) {
-		String output = "";
-
- 
-
-		for (int i = 0; i < ccaList.size(); i++) {
-
- 
-
-			output += String.format("%-84s \n", ccaList.get(i).toString());
-		}
-		return output;
-	}
-	
 	public static void viewAppStatus(ArrayList<Application> appList) {
+		setHeader("CCA APPLICATION STATUS");
+		Helper.line(80, "-");
 	    System.out.printf("%-20s %-20s %-20s%n", "Name", "CCA", "Application Status");
 	    Helper.line(80, "-");
 
@@ -187,56 +165,48 @@ public class C206_CaseStudy {
 	}
 
 	public static void appStatus(ArrayList<Application> appList) {
-		C206_CaseStudy.viewAppStatus(appList);
-	    
-	    String sName = "";
-	    sName = Helper.readString("ENTER STUDENT NAME > ");
-	    String sStatus = "";
-	    sStatus = Helper.readString("ENTER APPLICATION STATUS, <YES FOR APPROVE, NO FOR REJECT>");
-	    
+	    C206_CaseStudy.viewAppStatus(appList);
+
+	    String sName = Helper.readString("ENTER STUDENT NAME > ");
+	    String sStatus = Helper.readString("ENTER APPLICATION STATUS, <YES FOR APPROVE, NO FOR REJECT>");
+
+	    int matchingIndex = -1;
+
 	    for (int i = 0; i < appList.size(); i++) {
-	    	if (sName.equalsIgnoreCase(appList.get(i).getStudentName())) {
-	    		if (sStatus.equalsIgnoreCase("YES")) {
-	    			appList.get(i).setStatus("Approved");
-	    		} else {
-	    			appList.get(i).setStatus("Rejected");
-	    		}
-	    	}
+	        if (sName.equalsIgnoreCase(appList.get(i).getStudentName())) {
+	            matchingIndex = i;
+	            break;
+	        }
 	    }
-	    
-	    char move = Helper.readChar("Move <APPROVED> application students to respective CCAs?");
-	    if (move == 'T' || move == 't') {
-	    	for (int i = 0; i < appList.size(); i++) {
-	    		if (sName.equalsIgnoreCase(appList.get(i).getStudentName())) {
-	    			appList.remove(i);
-	    		} else {
-	    			System.out.println("No such student found");
-	    		}
-	    	}
-	    	
+
+	    if (matchingIndex != -1) {
+	        if (sStatus.equalsIgnoreCase("YES")) {
+	            appList.get(matchingIndex).setStatus("Approved");
+	        } else {
+	            appList.get(matchingIndex).setStatus("Rejected");
+	        }
+
+	        char move = Helper.readChar("Move <APPROVED> application students to respective CCAs? (Y/N)");
+	        if (move == 'Y' || move == 'y') {
+	            appList.remove(matchingIndex);
+	        }
+	    } else {
+	        System.out.println("No such student found");
 	    }
 	}
 
-	public static void viewAllMembers(ArrayList<Member> memberList) {
+	public static void viewCCA(ArrayList<CCA> ccaList) {
 		
+		String enteredCCA = Helper.readString("ENTER CCA NAME > ");
+		setHeader("CCA NAME AND DETAILS");
+		System.out.printf("%-20s %-20s%n", "CCA Name", "No. of members");
+		for (int i = 0; i < ccaList.size(); i++) {
+			if (enteredCCA.equalsIgnoreCase(ccaList.get(i).getCcaName())) {
+				System.out.printf("%-20s %-20s%n", ccaList.get(i).getCcaName(), ccaList.get(i).getCapacity());
+			}
+		}
 	}
 	
-	public static String retrieveAllUser(ArrayList<Student> userList) {
-		String output = "";
-
- 
-
-		for (int i = 0; i < userList.size(); i++) {
-
- 
-
-			output += String.format("%-84s \n", userList.get(i).toString());
-		}
-		return output;
-	}
-
- 
-
 	public static void viewAllCCA(ArrayList<CCA> ccaList) {
 		
 	    setHeader("CCA LIST");
@@ -248,8 +218,6 @@ public class C206_CaseStudy {
 	    }
 	}
 
- 
-
 	public static void viewAllUser(ArrayList<User> userList) {
 		C206_CaseStudy.setHeader("USER LIST");
 		System.out.printf("%-10s %-30s %-10s%n", "USERNAME", "PASSWORD", "ROLE");
@@ -259,10 +227,6 @@ public class C206_CaseStudy {
 		    }
 		
 	}
-
- 
-
- 
 
 	public static void addCCA(ArrayList<CCA> ccaList) {
 		C206_CaseStudy.setHeader("ADD CCA");
@@ -279,31 +243,18 @@ public class C206_CaseStudy {
 
 	}
 
- 
-
 	public static boolean doDeleteCCA(ArrayList<CCA> ccaList, String CCA) {
 		boolean deleted = false;
 		if (CCA.isEmpty())
 			return false;
 		for (int i = 0; i < ccaList.size(); i++) {
 			if (CCA.equalsIgnoreCase(ccaList.get(i).getCcaName())) {
-
- 
-
 				ccaList.remove(i);
-
- 
-
 				deleted = true;
-
- 
-
 			}
 		}
 		return deleted;
 	}
-
- 
 
 	public static void deleteCCA(ArrayList<CCA> ccaList) {
 		C206_CaseStudy.viewAllCCA(ccaList);
@@ -316,8 +267,6 @@ public class C206_CaseStudy {
 			C206_CaseStudy.viewAllCCA(ccaList);
 		}
 	}
-
- 
 
 	public static boolean doUpdateCCA(ArrayList<CCA> ccaList, String CCA, String desc, String restriction) {
 		boolean updated = false;
@@ -332,8 +281,6 @@ public class C206_CaseStudy {
 		}
 		return updated;
 	}
-
- 
 
 	public static void updateCCA(ArrayList<CCA> ccaList) {
 		C206_CaseStudy.viewAllCCA(ccaList);
@@ -351,12 +298,6 @@ public class C206_CaseStudy {
 			C206_CaseStudy.viewAllCCA(ccaList);
 		}
 	}
-
- 
-
-	
-
- 
 
 	public static void applyCCA(ArrayList<CCA> ccaList) {
 		C206_CaseStudy.viewAllCCA(ccaList);
@@ -417,17 +358,11 @@ public class C206_CaseStudy {
 		userPass = Helper.readString("ENTER USER PASSWORD > ");
 		useRole = Helper.readString("ENTER USER ROLE > ");
 
- 
-
 		userList.add(new User(userName, userPass, useRole));
-
- 
 
 		System.out.println("USER ADDED! ");
 		C206_CaseStudy.viewAllUser(userList);
 	}
-
- 
 
 	public static boolean doDeleteUser(ArrayList<Student> userList, String CCA, String dueDate) {
 
@@ -476,8 +411,6 @@ public class C206_CaseStudy {
 			System.out.println("Laptop " + tag + " loaned out");
 		}
 	}
-
- 
 
 	public static boolean doUpdateUser(ArrayList<Student> userList, String CCA) {
 		boolean isReturned = false;
