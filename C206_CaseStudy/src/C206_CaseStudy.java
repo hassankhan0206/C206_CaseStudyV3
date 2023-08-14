@@ -1,18 +1,17 @@
 import java.util.ArrayList;
 
- 
-
 public class C206_CaseStudy {
 
- 
-
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		
+		// ArrayLists here
 		ArrayList<CCA> ccaList = new ArrayList<CCA>();
 		ArrayList<User> userList = new ArrayList<User>();
+		ArrayList<Application> appList = new ArrayList<Application>();
 
  
-
 		ccaList.add(new CCA("NPCC",
 				"NPCC is a fulfilling and enriching co-curricular activity which allows cadets to learn and grow significantly in personal competencies and leadership.",
 				"Must have discipline!"));
@@ -20,14 +19,15 @@ public class C206_CaseStudy {
 				"The Basketball CCA aims to provide students with the opportunity to hone basic basketball skills, which includes various ball handling and shooting techniques. ",
 				"Must have good leadership!"));
 
- 
-
 		userList.add(new User("admin", "adminpass", "Admin"));
 		userList.add(new User("teacher", "teacherpass", "Teacher"));
 		userList.add(new User("student", "studentpass", "Student"));
+		
+		appList.add(new Application("Wafiy", "Chinese Dance", "Pending"));
+		appList.add(new Application("Nicholas", "Girls Guides", "Pending"));
+		appList.add(new Application("Hassan", "Robotics", "Pending"));
 
  
-
 		String userOpt = "";
 		String passOpt = "";
 		int aOption = 0;
@@ -37,16 +37,11 @@ public class C206_CaseStudy {
 		passOpt = Helper.readString("Enter password > ");
 
  
-
 		for (int i = 0; i < userList.size(); i++) {
 			if (userOpt.equals(userList.get(i).getUsername()) && passOpt.equals(userList.get(i).getPassword())) {
 				String userRole = userList.get(i).getRole();
 
- 
-
 				while (stOption != 9 || tOption != 9 || aOption != 9) {
-
- 
 
 					if (userRole.equalsIgnoreCase("Student")) {
 						System.out.println("");
@@ -94,26 +89,15 @@ public class C206_CaseStudy {
 						} else if (tOption == 3) {
 							C206_CaseStudy.updateCCA(ccaList);
 						} else if (tOption == 4) {
-							C206_CaseStudy.appStatus(ccaList); //need to make new class and variable
+							C206_CaseStudy.appStatus(appList); 
+						} else if (tOption == 5) {
+							C206_CaseStudy.viewAppStatus(appList);
 						}
-
- 
-
 					}
 				}
 			}
 		}
 	}
-
-
- 
-
-	private static void appStatus(ArrayList<CCA> ccaList) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
 
 
 	public static void studentMenu() {
@@ -134,6 +118,7 @@ public class C206_CaseStudy {
 		System.out.println("2. Delete CCA");
 		System.out.println("3. Update CCA");
 		System.out.println("4. Approve request");
+		System.out.println("5. View application status");
 		System.out.println("9. Quit");
 		Helper.line(80, "-");
 	}
@@ -165,10 +150,8 @@ public class C206_CaseStudy {
 
 	public static String showAvailability(boolean isAvailable) {
 		String avail;
-
  
-
-		if (isAvailable == true) {
+	if (isAvailable == true) {
 			avail = "Yes";
 		} else {
 			avail = "No";
@@ -177,7 +160,6 @@ public class C206_CaseStudy {
 	}
 
  
-
 	public static String retrieveAllCCA(ArrayList<CCA> ccaList) {
 		String output = "";
 
@@ -191,8 +173,34 @@ public class C206_CaseStudy {
 		}
 		return output;
 	}
+	
+	public static void viewAppStatus(ArrayList<Application> appList) {
+	    System.out.printf("%-20s %-20s %-20s%n", "Name", "CCA", "Application Status");
+	    Helper.line(80, "-");
 
- 
+	    for (int i = 0; i < appList.size(); i++) {
+	        System.out.printf("%-20s %-20s %-20s%n", appList.get(i).getStudentName(), appList.get(i).getStudentCCA(), appList.get(i).getStatus());
+	    }
+	}
+
+	public static void appStatus(ArrayList<Application> appList) {
+		C206_CaseStudy.viewAppStatus(appList);
+	    
+	    String sName = "";
+	    sName = Helper.readString("ENTER STUDENT NAME > ");
+	    String sStatus = "";
+	    sStatus = Helper.readString("ENTER APPLICATION STATUS, <YES FOR APPROVE, NO FOR REJECT>");
+	    
+	    for (int i = 0; i < appList.size(); i++) {
+	    	if (sName.equalsIgnoreCase(appList.get(i).getStudentName())) {
+	    		if (sStatus.equalsIgnoreCase("YES")) {
+	    			appList.get(i).setStatus("Approved");
+	    		} else {
+	    			appList.get(i).setStatus("Rejected");
+	    		}
+	    	}
+	    }
+	}
 
 	public static String retrieveAllUser(ArrayList<Student> userList) {
 		String output = "";
