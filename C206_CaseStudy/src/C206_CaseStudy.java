@@ -21,7 +21,9 @@ public class C206_CaseStudy {
 
 		String userOpt = "";
 		String passOpt = "";
-		int option = 0;
+		int aOption = 0;
+		int stOption = 0;
+		int tOption = 0;
 		userOpt = Helper.readString("Enter username > ");
 		passOpt = Helper.readString("Enter password > ");
 
@@ -32,25 +34,25 @@ public class C206_CaseStudy {
  
 
 				if (userRole == "Student") {
-					while (option != 9) {
+					while (stOption != 9) {
 						System.out.println("");
 						System.out.println("YOU ARE LOGGED IN AS A STUDENT");
 						C206_CaseStudy.studentMenu();
-						option = Helper.readInt("ENTER AN OPTION > ");
+						stOption = Helper.readInt("ENTER AN OPTION > ");
 					}
 				} else if (userRole == "Admin") {
-					while (option != 9) {
+					while (aOption != 9) {
 						System.out.println("");
 						System.out.println("YOU ARE LOGGED IN AS AN ADMIN");
 						C206_CaseStudy.adminMenu();
-						option = Helper.readInt("ENTER AN OPTION > ");
+						aOption = Helper.readInt("ENTER AN OPTION > ");
 					}	
 				} else {
-					while (option != 9) {
+					while (tOption != 9) {
 						System.out.println("");
 						System.out.println("YOU ARE LOGGED IN AS A TEACHER");
 						C206_CaseStudy.teacherMenu();
-						option = Helper.readInt("ENTER AN OPTION > ");
+						tOption = Helper.readInt("ENTER AN OPTION > ");
 					}
 				}
 			}
@@ -58,13 +60,13 @@ public class C206_CaseStudy {
 
 
 	
-			if (option == 1) {
+			if (stOption == 1) {
 				// View all items
 				C206_CaseStudy.viewAllCCA(ccaList);
 
  
 
-			} else if (option == 2) {
+			} else if (stOption == 2) {
 				// Loan item
 				C206_CaseStudy.setHeader("Apply CCA");			
 
@@ -79,7 +81,7 @@ public class C206_CaseStudy {
 
  
 
-			} else if (option == 3) {
+			} else if (aOption == 1 || tOption == 1) {
 				// Add a new item
 				C206_CaseStudy.setHeader("ADD CCA");			
 
@@ -102,7 +104,7 @@ public class C206_CaseStudy {
 
  
 
-			} else if (option == 4) {
+			} else if (aOption == 2 || tOption == 2) {
 				// Return item
 				C206_CaseStudy.setHeader("Delete CCA");				
 
@@ -115,7 +117,7 @@ public class C206_CaseStudy {
 
  
 
-			} else if (option == 5) {
+			} else if (aOption == 3 || tOption == 3) {
 				// Return item
 				C206_CaseStudy.setHeader("Update CCA");				
 
@@ -125,7 +127,7 @@ public class C206_CaseStudy {
 
 					// Return laptop
 					C206_CaseStudy.updateLaptop(ccaList);
-			} else if (option == 6) {
+			} else if (aOption == 4) {
 				// Return item
 				C206_CaseStudy.setHeader("Add User");				
 
@@ -135,7 +137,7 @@ public class C206_CaseStudy {
 
 					// Return laptop
 					C206_CaseStudy.updateLaptop(ccaList);
-			} else if (option == 7) {
+			} else if (aOption == 5) {
 				// Return item
 				C206_CaseStudy.setHeader("Delete User");				
 
@@ -145,7 +147,7 @@ public class C206_CaseStudy {
 
 					// Return laptop
 					C206_CaseStudy.updateLaptop(ccaList);
-			} else if (option == 8) {
+			} else if (aOption == 6) {
 				// Return item
 				C206_CaseStudy.setHeader("Update User");				
 
@@ -155,7 +157,7 @@ public class C206_CaseStudy {
 
 					// Return laptop
 					C206_CaseStudy.updateLaptop(ccaList);
-			} else if (option == 9) {
+			} else if (tOption == 4) {
 				// Return item
 				C206_CaseStudy.setHeader("Request Approval");				
 
@@ -165,7 +167,7 @@ public class C206_CaseStudy {
 
 					// Return laptop
 					C206_CaseStudy.updateLaptop(ccaList);
-			} else if (option == 0) {
+			} else if (stOption == 9 || tOption == 9 || aOption == 9) {
 				System.out.println("Bye!");
 			} else {
 				System.out.println("Invalid option");
