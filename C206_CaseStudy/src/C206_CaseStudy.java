@@ -206,11 +206,18 @@ public class C206_CaseStudy {
 	    
 	    char move = Helper.readChar("Move <APPROVED> application students to respective CCAs?");
 	    if (move == 'T' || move == 't') {
+	    	for (int i = 0; i < appList.size(); i++) {
+	    		if (sName.equalsIgnoreCase(appList.get(i).getStudentName())) {
+	    			appList.remove(i);
+	    		} else {
+	    			System.out.println("No such student found");
+	    		}
+	    	}
 	    	
 	    }
 	}
 
-	public static void viewMemberStatus(ArrayList<Member> memberList) {
+	public static void viewAllMembers(ArrayList<Member> memberList) {
 		
 	}
 	
@@ -264,7 +271,7 @@ public class C206_CaseStudy {
 		desc = Helper.readString("ENTER CCA DESCRIPTION > ");
 		rest = Helper.readString("ENTER CCA RESTRICTION > ");
 
-		ccaList.add(new CCA(ccaName, desc, rest));
+		ccaList.add(new CCA(ccaName, desc, rest, 0));
 
 		System.out.println("CCA ADDED! ");
 
