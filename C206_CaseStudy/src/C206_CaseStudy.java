@@ -203,6 +203,12 @@ public class C206_CaseStudy {
 	    		}
 	    	}
 	    }
+	    
+	    for (int i = 0; i < appList.size(); i++) {
+	    	if (appList.get(i).getStatus() == "Approve") {
+	    		
+	    	}
+	    }
 	}
 
 	public static String retrieveAllUser(ArrayList<Student> userList) {
@@ -222,6 +228,7 @@ public class C206_CaseStudy {
  
 
 	public static void viewAllCCA(ArrayList<CCA> ccaList) {
+		
 	    setHeader("CCA LIST");
 	    System.out.printf("%-20s %-70s %-10s%n", "CCA Name", "Description", "Restriction");
 	    Helper.line(120, "-");
@@ -254,15 +261,9 @@ public class C206_CaseStudy {
 		desc = Helper.readString("ENTER CCA DESCRIPTION > ");
 		rest = Helper.readString("ENTER CCA RESTRICTION > ");
 
- 
-
 		ccaList.add(new CCA(ccaName, desc, rest));
 
- 
-
 		System.out.println("CCA ADDED! ");
-
- 
 
 	}
 
