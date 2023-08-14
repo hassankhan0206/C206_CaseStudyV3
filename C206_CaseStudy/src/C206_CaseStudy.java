@@ -111,7 +111,7 @@ public class C206_CaseStudy {
  
 
 					// Return laptop
-					C206_CaseStudy.deleteLaptop(ccaList);
+					C206_CaseStudy.deleteCCA(ccaList);
 
  
 
@@ -124,7 +124,7 @@ public class C206_CaseStudy {
  
 
 					// Return laptop
-					C206_CaseStudy.updateLaptop(ccaList);
+					C206_CaseStudy.updateCCA(ccaList);
 			} else if (option == 6) {
 				// Return item
 				C206_CaseStudy.setHeader("Add User");				
@@ -134,7 +134,7 @@ public class C206_CaseStudy {
  
 
 					// Return laptop
-					C206_CaseStudy.updateLaptop(ccaList);
+					C206_CaseStudy.addUser(ccaList);
 			} else if (option == 7) {
 				// Return item
 				C206_CaseStudy.setHeader("Delete User");				
@@ -144,7 +144,7 @@ public class C206_CaseStudy {
  
 
 					// Return laptop
-					C206_CaseStudy.updateLaptop(ccaList);
+					C206_CaseStudy.deleteUser(ccaList);
 			} else if (option == 8) {
 				// Return item
 				C206_CaseStudy.setHeader("Update User");				
@@ -154,7 +154,7 @@ public class C206_CaseStudy {
  
 
 					// Return laptop
-					C206_CaseStudy.updateLaptop(ccaList);
+					C206_CaseStudy.updateUser(ccaList);
 			} else if (option == 9) {
 				// Return item
 				C206_CaseStudy.setHeader("Request Approval");				
@@ -164,7 +164,7 @@ public class C206_CaseStudy {
  
 
 					// Return laptop
-					C206_CaseStudy.updateLaptop(ccaList);
+					C206_CaseStudy.approveRequest(ccaList);
 			} else if (option == 0) {
 				System.out.println("Bye!");
 			} else {
@@ -378,7 +378,7 @@ String output = "";
 
  
 
-	public static void deleteLaptop(ArrayList<CCA> ccaList) {
+	public static void deleteCCA(ArrayList<CCA> ccaList) {
 		C206_CaseStudy.viewAllCCA(ccaList);
 		String tag = Helper.readString("Enter asset tag > ");
 		String due = Helper.readString("Enter due date > ");
