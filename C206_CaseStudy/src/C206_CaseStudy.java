@@ -93,6 +93,9 @@ public class C206_CaseStudy {
 						} else if (tOption == 5) {
 							C206_CaseStudy.viewAppStatus(appList);
 						}
+					} if (stOption == 9 || tOption == 9 || aOption == 9) {
+						System.out.println("Logging out...");
+						break;
 					}
 				}
 			}
