@@ -5,68 +5,60 @@ public class C206_CaseStudy {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
- 
-
 		ArrayList<CCA> ccaList = new ArrayList<CCA>();
 		ArrayList<User> userList = new ArrayList<User>();
+
+ 
 
 		ccaList.add(new CCA("NPCC", "NPCC is a fulfilling and enriching co-curricular activity which allows cadets to learn and grow significantly in personal competencies and leadership.", "Must have discipline!"));
 		ccaList.add(new CCA("Basketball", "The Basketball CCA aims to provide students with the opportunity to hone basic basketball skills, which includes various ball handling and shooting techniques. ", "Must have good leadership!"));
 
  
 
-		
-
- 
-
-		int option = 0;
-
- 
-
- 
-
- 
-
-			C206_CaseStudy.menu();
-			option = Helper.readInt("Enter an option > ");
-
- 
-
- 
-
- 
-
 		userList.add(new User("admin","adminpass", "Admin"));
+		userList.add(new User("teacher", "teacherpass", "Teacher"));
+		userList.add(new User("student", "studentpass", "Student"));
 
 		String userOpt = "";
 		String passOpt = "";
+		int option = 0;
 		userOpt = Helper.readString("Enter username > ");
 		passOpt = Helper.readString("Enter password > ");
 
-		boolean authenticated = false;
+		for (int i = 0; i < userList.size(); i++) {
+			if (userOpt.equals(userList.get(i).getUsername()) && passOpt.equals(userList.get(i).getPassword())) {
+				String userRole = userList.get(i).getRole();
 
-		for (User user : userList) {
-		    if (user.getUsername().equals(userOpt) && user.getPassword().equals(passOpt)) {
-		        authenticated = true;
-		        break;
-		    }
-		}
+ 
 
-		if (authenticated) {
-		    int option = 0;
-		    while (option != 6) {
-		        C206_CaseStudy.menu();
-		        option = Helper.readInt("Enter an option > ");
-		    }
-		} else {
-		    System.out.println("Invalid username or password.");
+				if (userRole == "Student") {
+					while (option != 9) {
+						System.out.println("");
+						System.out.println("YOU ARE LOGGED IN AS A STUDENT");
+						C206_CaseStudy.studentMenu();
+						option = Helper.readInt("ENTER AN OPTION > ");
+					}
+				} else if (userRole == "Admin") {
+					while (option != 9) {
+						System.out.println("");
+						System.out.println("YOU ARE LOGGED IN AS AN ADMIN");
+						C206_CaseStudy.adminMenu();
+						option = Helper.readInt("ENTER AN OPTION > ");
+					}	
+				} else {
+					while (option != 9) {
+						System.out.println("");
+						System.out.println("YOU ARE LOGGED IN AS A TEACHER");
+						C206_CaseStudy.teacherMenu();
+						option = Helper.readInt("ENTER AN OPTION > ");
+					}
+				}
+			}
 		}
 
  
 
- 
-
+	
 			if (option == 1) {
 				// View all items
 				C206_CaseStudy.viewAllCCA(ccaList);
@@ -85,21 +77,6 @@ public class C206_CaseStudy {
 					C206_CaseStudy.applyCCA(ccaList);
 
  
-
-			} else if (option == 3) {
-				// Add a new item
-				C206_CaseStudy.setHeader("ADD CCA");			
-
- 
-
-				C206_CaseStudy.viewAllCCA(ccaList);
-
- 
-
-					// Add a laptop
-					CCA lp = inputCCA();
-					C206_CaseStudy.addCCA(ccaList, lp);
-					System.out.println("CCA added");
 
  
 
@@ -145,11 +122,15 @@ public class C206_CaseStudy {
 
  
 
+ 
+
 					// Return laptop
 					C206_CaseStudy.updateLaptop(ccaList);
 			} else if (option == 6) {
 				// Return item
 				C206_CaseStudy.setHeader("Add User");				
+
+ 
 
  
 
@@ -161,11 +142,15 @@ public class C206_CaseStudy {
 
  
 
+ 
+
 					// Return laptop
 					C206_CaseStudy.updateLaptop(ccaList);
 			} else if (option == 8) {
 				// Return item
 				C206_CaseStudy.setHeader("Update User");				
+
+ 
 
  
 
@@ -186,11 +171,8 @@ public class C206_CaseStudy {
 			} else {
 				System.out.println("Invalid option");
 			}
-<<<<<<< HEAD
 		}
-=======
-		}
-	}
+
 
  
 
@@ -203,24 +185,37 @@ public class C206_CaseStudy {
 
  
 
-	public static void menu() {
+	public static void studentMenu() {
 		C206_CaseStudy.setHeader("CCA APPLICATION APP");
+		Helper.line(80, "-");
 		System.out.println("1. Display CCA");
 		System.out.println("2. Apply CCA");
-		System.out.println("3. Add CCA");
-		System.out.println("4. Delete CCA");
-		System.out.println("5. Update CCA");
-		System.out.println("6. Add User");
-		System.out.println("7. Delete User");
-		System.out.println("8. Update User");
-		System.out.println("9. Approve request");
-		System.out.println("0. Quit");
+		System.out.println("9. Quit");
 		Helper.line(80, "-");
+	}
 
- 
+	public static void teacherMenu() {
+		C206_CaseStudy.setHeader("CCA APPLICATION APP");
+		Helper.line(80, "-");
+		System.out.println("1. Add CCA");
+		System.out.println("2. Delete CCA");
+		System.out.println("3. Update CCA");
+		System.out.println("4. Approve request");
+		System.out.println("9. Quit");
+		Helper.line(80, "-");
+	}
 
- 
-
+	public static void adminMenu() {
+		C206_CaseStudy.setHeader("CCA APPLICATION APP");
+		Helper.line(80, "-");
+		System.out.println("1. Add CCA");
+		System.out.println("2. Delete CCA");
+		System.out.println("3. Update CCA");
+		System.out.println("4. Add User");
+		System.out.println("5. Delete User");
+		System.out.println("6. Update User");
+		System.out.println("9. Quit");
+		Helper.line(80, "-");
 	}
 
  
@@ -255,11 +250,13 @@ public class C206_CaseStudy {
  
 
 	public static String retrieveAllCCA(ArrayList<CCA> ccaList) {
-		String output = "";
+String output = "";
 
  
 
 	    for (int i = 0; i < ccaList.size(); i++) {
+
+ 
 
  
 
@@ -285,6 +282,13 @@ public class C206_CaseStudy {
 			    }
 			    return output;
 			  }
+
+ 
+
+	
+
+
+ 
 
  
 
@@ -320,23 +324,12 @@ public class C206_CaseStudy {
 
  
 
-<<<<<<< HEAD
-
- 
-
-=======
->>>>>>> branch 'master' of https://github.com/hassankhan0206/C206_CaseStudy.git
 		CCA lp= new CCA(CCA, description, restriction);
 		return lp;
-	}
-	public static void viewAllUser(ArrayList<CCA> ccaList) {
-		C206_CaseStudy.setHeader("USER LIST");
-		String output = String.format("%-10s %-30s %-20s\n", "CCA", "DESCRIPTION", "Restrictions");
-		 output += retrieveAllUser(userList);	
-		System.out.println(output);
-	}
 
  
+
+	}
 
  
 
@@ -360,18 +353,13 @@ public class C206_CaseStudy {
  
 
 		boolean isLoaned = false;
-		if (CCA.isEmpty() || dueDate.isEmpty())
-			return false;
 
  
 
-		
-		for (int i = 0; i < ccaList.size(); i++) {
+ 
 
-			if (CCA.equalsIgnoreCase(ccaList.get(i).getccaName())				
-&& ccaList.get(i).getIsAvailable() == true) {
-
-				ccaList.remove(i);
+		if (CCA.isEmpty() || dueDate.isEmpty())
+			return false;
 
  
 
@@ -389,10 +377,15 @@ public class C206_CaseStudy {
  
 
 				isLoaned = true;
+
+ 
+
 			}
 		}
 		return isLoaned;
 	}
+
+ 
 
  
 
@@ -415,6 +408,8 @@ public class C206_CaseStudy {
 
  
 
+ 
+
 		if (CCA.isEmpty())
 			return false;
 
@@ -430,23 +425,14 @@ public class C206_CaseStudy {
 
  
 
-		for (int i = 0; i < ccaList.size(); i++) {
-
- 
-
  
 
 					&& ccaList.get(i).getIsAvailable() == false) {
 
  
 
-			if (CCA.equalsIgnoreCase(ccaList.get(i).getccaName())
-
  
 
- 
-
-					&& ccaList.get(i).getIsAvailable() == false) {
 				ccaList.get(i).setAvailable(true);
 				isReturned = true;
 
@@ -455,11 +441,9 @@ public class C206_CaseStudy {
 			}
 		}
 		return isReturned;
-		}
+			}
 
  
-
-	
 
  
 
@@ -489,25 +473,30 @@ public class C206_CaseStudy {
 
 	public static void applyCCA(ArrayList<CCA> ccaList) {
 		C206_CaseStudy.viewAllCCA(ccaList);
-		String ccaName = Helper.readString("Enter CCA name > ");
-
-	    CCA selectedCCA = findCCA(ccaList, ccaName);
-	    if (selectedCCA != null && selectedCCA.isAvailable()) {
-	        selectedCCA.setAvailable(false);
-	        System.out.println("Applied for CCA: " + ccaName);
-	    } else {
-	        System.out.println("Invalid CCA name or CCA not available for application.");
-	    }
+		String tag = Helper.readString("Enter CCA name > ");
+		String due = Helper.readString("Enter due date > ");
+		Boolean isLoaned = doApplyCCA(ccaList, tag);
+		if (isLoaned == false) {
+			System.out.println("Invalid asset tag");
+		} else {
+			System.out.println("Laptop " + tag + " loaned out");
+		}
 	}
 	public static boolean doApplyCCA(ArrayList<CCA> ccaList,String tag) {
 		boolean isReturned = false;
 
  
 
+ 
+
 		if (tag.isEmpty())
 			return false;
 
+ 
+
 		for (int i = 0; i < ccaList.size(); i++) {
+
+ 
 
  
 
@@ -515,17 +504,25 @@ public class C206_CaseStudy {
 
  
 
+ 
+
 					&& ccaList.get(i).getIsAvailable() == false) {
+
+ 
 
  
 
 				ccaList.get(i).setAvailable(true);
 				isReturned = true;
 
+ 
+
 			}
 		}
 		return isReturned;
 		}
+
+ 
 
  
 
@@ -540,18 +537,18 @@ public static Student inputUser() {
 
  
 
+ 
+
 	CCA lp= new CCA(CCA, description, restriction);
 	return lp;
-<<<<<<< HEAD
-
-=======
 
  
 
  
 
->>>>>>> branch 'master' of https://github.com/hassankhan0206/C206_CaseStudy.git
 }
+
+ 
 
  
 
@@ -567,29 +564,47 @@ public static void addUser(ArrayList<Student> userList, CCA lp) {
 	}
 	userList.add(lp);
 
+ 
+
 }
 public static boolean doDeleteUser(ArrayList<Student> userList, String CCA, String dueDate) {
 
+ 
+
 	boolean isLoaned = false;
+
+ 
 
  
 
 	if (CCA.isEmpty() || dueDate.isEmpty())
 		return false;
 
+ 
+
 	for (int i = 0; i < ccaList.size(); i++) {
+
+ 
 
 		if (CCA.equalsIgnoreCase(ccaList.get(i).getccaName())				
 && ccaList.get(i).getIsAvailable() == true) {
 
+ 
+
 			ccaList.remove(i);
 
+ 
+
 			isLoaned = true;
+
+ 
 
 		}
 	}
 	return isLoaned;
 }
+
+ 
 
  
 
@@ -612,10 +627,16 @@ public static boolean doUpdateUser(ArrayList<Student> userList,String CCA) {
 
  
 
+ 
+
 	if (CCA.isEmpty())
 		return false;
 
+ 
+
 	for (int i = 0; i < ccaList.size(); i++) {
+
+ 
 
  
 
@@ -623,12 +644,18 @@ public static boolean doUpdateUser(ArrayList<Student> userList,String CCA) {
 
  
 
+ 
+
 				&& ccaList.get(i).getIsAvailable() == false) {
+
+ 
 
  
 
 			ccaList.get(i).setAvailable(true);
 			isReturned = true;
+
+ 
 
 		}
 	}
@@ -637,10 +664,14 @@ public static boolean doUpdateUser(ArrayList<Student> userList,String CCA) {
 
  
 
+ 
+
 public static void updateUser(ArrayList<CCA> ccaList) {
 	C206_CaseStudy.viewAllCCA(ccaList);
 	String CCA = Helper.readString("Enter CCA > ");
 	Boolean isReturned = doUpdateLaptop(ccaList, CCA);
+
+ 
 
 	if (isReturned == false) {
 		System.out.println("Invalid CCA");
@@ -648,6 +679,8 @@ public static void updateUser(ArrayList<CCA> ccaList) {
 		System.out.println("CCA updated");
 	}
 }
+
+ 
 
  
 
@@ -667,10 +700,16 @@ public static boolean doAddUser(ArrayList<CCA> ccaList,String tag) {
 
  
 
+ 
+
 	if (tag.isEmpty())
 		return false;
 
+ 
+
 	for (int i = 0; i < ccaList.size(); i++) {
+
+ 
 
  
 
@@ -678,18 +717,25 @@ public static boolean doAddUser(ArrayList<CCA> ccaList,String tag) {
 
  
 
+ 
+
 				&& ccaList.get(i).getIsAvailable() == false) {
+
+ 
 
  
 
 			ccaList.get(i).setAvailable(true);
 			isReturned = true;
 
+ 
+
 		}
 	}
 	return isReturned;
 	}
 
+ 
 
  
 
