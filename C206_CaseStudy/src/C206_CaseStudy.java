@@ -60,10 +60,6 @@ public class C206_CaseStudy {
 				}
 			}
 		}
-//				}
-//			}
-//		}
-		
 
 
 		if (stOption == 1) {
