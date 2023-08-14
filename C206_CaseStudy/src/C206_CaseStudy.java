@@ -30,15 +30,18 @@ public class C206_CaseStudy {
 		int aOption = 0;
 		int stOption = 0;
 		int tOption = 0;
+		boolean loggedIn = false;
+		
+		while (loggedIn == false) {
 		userOpt = Helper.readString("Enter username > ");
 		passOpt = Helper.readString("Enter password > ");
-
- 
+		
 		for (int i = 0; i < userList.size(); i++) {
 			if (userOpt.equals(userList.get(i).getUsername()) && passOpt.equals(userList.get(i).getPassword())) {
 				String userRole = userList.get(i).getRole();
+				loggedIn = true;
 
-				while (stOption != 9 || tOption != 9 || aOption != 9) {
+				while (loggedIn) {
 
 					if (userRole.equalsIgnoreCase("Student")) {
 						System.out.println("");
@@ -94,8 +97,9 @@ public class C206_CaseStudy {
 						}
 					} if (stOption == 9 || tOption == 9 || aOption == 9) {
 						System.out.println("Logging out...");
-						break;
+						loggedIn = false;
 					}
+				}
 				}
 			}
 		}
