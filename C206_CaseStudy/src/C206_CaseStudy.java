@@ -235,10 +235,12 @@ public class C206_CaseStudy {
 
 	public static void viewAllUser(ArrayList<User> userList) {
 		C206_CaseStudy.setHeader("USER LIST");
-		String output = String.format("%-10s %-30s %-10s %-10s %-20s\n", "ASSET TAG", "DESCRIPTION", "AVAILABLE",
-				"DUE DATE", "OPTICAL ZOOM");
-		output += retrieveAllUser(userList);
-		System.out.println(output);
+		System.out.printf("%-10s %-30s %-10s%n", "USERNAME", "PASSWORD", "ROLE");
+	    Helper.line(120, "-");
+		 for (User user : userList) {
+		        System.out.printf("%-10s %-30s %-10s%n", user.getUsername(), user.getPassword(), user.getRole());
+		    }
+		
 	}
 
  
@@ -341,11 +343,7 @@ public class C206_CaseStudy {
 
  
 
-	public static void viewAllUsers(ArrayList<User> userList) {
-
- 
-
-	}
+	
 
  
 
@@ -404,9 +402,9 @@ public class C206_CaseStudy {
 		String userName = "";
 		String userPass = "";
 		String useRole = "";
-		userName = Helper.readString("ENTER CCA NAME > ");
-		userPass = Helper.readString("ENTER CCA DESCRIPTION > ");
-		useRole = Helper.readString("ENTER CCA RESTRICTION > ");
+		userName = Helper.readString("ENTER USER NAME > ");
+		userPass = Helper.readString("ENTER USER PASSWORD > ");
+		useRole = Helper.readString("ENTER USER ROLE > ");
 
  
 
@@ -415,6 +413,7 @@ public class C206_CaseStudy {
  
 
 		System.out.println("USER ADDED! ");
+		C206_CaseStudy.viewAllUser(userList);
 	}
 
  
