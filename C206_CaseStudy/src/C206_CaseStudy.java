@@ -127,7 +127,7 @@ public class C206_CaseStudy {
 
 					// Return laptop
 
-					C206_CaseStudy.updateCCA(ccaList);
+
 			} else if (aOption == 4) {
 
 
