@@ -1,11 +1,17 @@
 import java.util.ArrayList;
 
+ 
+
 public class C206_CaseStudy {
+
+ 
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		ArrayList<CCA> ccaList = new ArrayList<CCA>();
 		ArrayList<User> userList = new ArrayList<User>();
+
+ 
 
 		ccaList.add(new CCA("NPCC",
 				"NPCC is a fulfilling and enriching co-curricular activity which allows cadets to learn and grow significantly in personal competencies and leadership.",
@@ -14,9 +20,13 @@ public class C206_CaseStudy {
 				"The Basketball CCA aims to provide students with the opportunity to hone basic basketball skills, which includes various ball handling and shooting techniques. ",
 				"Must have good leadership!"));
 
+ 
+
 		userList.add(new User("admin", "adminpass", "Admin"));
 		userList.add(new User("teacher", "teacherpass", "Teacher"));
 		userList.add(new User("student", "studentpass", "Student"));
+
+ 
 
 		String userOpt = "";
 		String passOpt = "";
@@ -26,11 +36,17 @@ public class C206_CaseStudy {
 		userOpt = Helper.readString("Enter username > ");
 		passOpt = Helper.readString("Enter password > ");
 
+ 
+
 		for (int i = 0; i < userList.size(); i++) {
 			if (userOpt.equals(userList.get(i).getUsername()) && passOpt.equals(userList.get(i).getPassword())) {
 				String userRole = userList.get(i).getRole();
 
+ 
+
 				while (stOption != 9 || tOption != 9 || aOption != 9) {
+
+ 
 
 					if (userRole.equalsIgnoreCase("Student")) {
 						System.out.println("");
@@ -42,6 +58,8 @@ public class C206_CaseStudy {
 						} else if (stOption == 2) {
 							C206_CaseStudy.applyCCA(ccaList);
 						}
+
+ 
 
 					} else if (userRole.equalsIgnoreCase("Admin")) {
 						System.out.println("");
@@ -62,6 +80,8 @@ public class C206_CaseStudy {
 							C206_CaseStudy.updateUser(userList);
 						}
 
+ 
+
 					} else {
 						System.out.println("");
 						System.out.println("YOU ARE LOGGED IN AS A TEACHER");
@@ -77,12 +97,24 @@ public class C206_CaseStudy {
 							C206_CaseStudy.appStatus(ccaList); //need to make new class and variable
 						}
 
+ 
+
 					}
 				}
 			}
 		}
 	}
+
+
+ 
+
+	private static void appStatus(ArrayList<CCA> ccaList) {
+		// TODO Auto-generated method stub
 		
+	}
+
+
+
 
 	public static void studentMenu() {
 		C206_CaseStudy.setHeader("CCA APPLICATION APP");
@@ -92,6 +124,8 @@ public class C206_CaseStudy {
 		System.out.println("9. Quit");
 		Helper.line(80, "-");
 	}
+
+ 
 
 	public static void teacherMenu() {
 		C206_CaseStudy.setHeader("CCA APPLICATION APP");
@@ -103,6 +137,8 @@ public class C206_CaseStudy {
 		System.out.println("9. Quit");
 		Helper.line(80, "-");
 	}
+
+ 
 
 	public static void adminMenu() {
 		C206_CaseStudy.setHeader("CCA APPLICATION APP");
@@ -117,14 +153,20 @@ public class C206_CaseStudy {
 		Helper.line(80, "-");
 	}
 
+ 
+
 	public static void setHeader(String header) {
 		Helper.line(80, "-");
 		System.out.println(header);
 		Helper.line(80, "-");
 	}
 
+ 
+
 	public static String showAvailability(boolean isAvailable) {
 		String avail;
+
+ 
 
 		if (isAvailable == true) {
 			avail = "Yes";
@@ -134,32 +176,51 @@ public class C206_CaseStudy {
 		return avail;
 	}
 
+ 
+
 	public static String retrieveAllCCA(ArrayList<CCA> ccaList) {
 		String output = "";
 
+ 
+
 		for (int i = 0; i < ccaList.size(); i++) {
+
+ 
 
 			output += String.format("%-84s \n", ccaList.get(i).toString());
 		}
 		return output;
 	}
 
+ 
+
 	public static String retrieveAllUser(ArrayList<Student> userList) {
 		String output = "";
 
+ 
+
 		for (int i = 0; i < userList.size(); i++) {
+
+ 
 
 			output += String.format("%-84s \n", userList.get(i).toString());
 		}
 		return output;
 	}
 
+ 
+
 	public static void viewAllCCA(ArrayList<CCA> ccaList) {
-		setHeader("CCA LIST");
-		for (CCA cca : ccaList) {
-			System.out.println(cca.toString());
-		}
+	    setHeader("CCA LIST");
+	    System.out.printf("%-20s %-70s %-10s%n", "CCA Name", "Description", "Restriction");
+	    Helper.line(120, "-");
+
+	    for (CCA cca : ccaList) {
+	        System.out.printf("%-20s %-70s %-30s%n", cca.getCcaName(), cca.getDescription(), cca.getRestriction());
+	    }
 	}
+
+ 
 
 	public static void viewAllUser(ArrayList<User> userList) {
 		C206_CaseStudy.setHeader("USER LIST");
@@ -169,6 +230,9 @@ public class C206_CaseStudy {
 		System.out.println(output);
 	}
 
+ 
+
+ 
 
 	public static void addCCA(ArrayList<CCA> ccaList) {
 		C206_CaseStudy.setHeader("ADD CCA");
@@ -179,31 +243,55 @@ public class C206_CaseStudy {
 		desc = Helper.readString("ENTER CCA DESCRIPTION > ");
 		rest = Helper.readString("ENTER CCA RESTRICTION > ");
 
+ 
+
 		ccaList.add(new CCA(ccaName, desc, rest));
+
+ 
 
 		System.out.println("CCA ADDED! ");
 
+ 
+
 	}
+
+ 
 
 	public static boolean doDeleteCCA(ArrayList<CCA> ccaList, String CCA, String dueDate) {
 
+ 
+
 		boolean isLoaned = false;
+
+ 
 
 		if (CCA.isEmpty() || dueDate.isEmpty())
 			return false;
 
+ 
+
 		for (int i = 0; i < ccaList.size(); i++) {
+
+ 
 
 			if (CCA.equalsIgnoreCase(ccaList.get(i).getccaName()) && ccaList.get(i).getIsAvailable() == true) {
 
+ 
+
 				ccaList.remove(i);
 
+ 
+
 				isLoaned = true;
+
+ 
 
 			}
 		}
 		return isLoaned;
 	}
+
+ 
 
 	public static void deleteCCA(ArrayList<CCA> ccaList) {
 		C206_CaseStudy.viewAllCCA(ccaList);
@@ -217,30 +305,48 @@ public class C206_CaseStudy {
 		}
 	}
 
+ 
+
 	public static boolean doUpdateLaptop(ArrayList<CCA> ccaList, String CCA) {
 		boolean isReturned = false;
+
+ 
 
 		if (CCA.isEmpty())
 			return false;
 
+ 
+
 		for (int i = 0; i < ccaList.size(); i++) {
+
+ 
 
 			if (CCA.equalsIgnoreCase(ccaList.get(i).getccaName())
 
+ 
+
 					&& ccaList.get(i).getIsAvailable() == false) {
+
+ 
 
 				ccaList.get(i).setAvailable(true);
 				isReturned = true;
+
+ 
 
 			}
 		}
 		return isReturned;
 	}
 
+ 
+
 	public static void updateCCA(ArrayList<CCA> ccaList) {
 		C206_CaseStudy.viewAllCCA(ccaList);
 		String CCA = Helper.readString("Enter CCA > ");
 		Boolean isReturned = doUpdateLaptop(ccaList, CCA);
+
+ 
 
 		if (isReturned == false) {
 			System.out.println("Invalid CCA");
@@ -249,9 +355,15 @@ public class C206_CaseStudy {
 		}
 	}
 
+ 
+
 	public static void viewAllUsers(ArrayList<User> userList) {
 
+ 
+
 	}
+
+ 
 
 	public static void applyCCA(ArrayList<CCA> ccaList) {
 		C206_CaseStudy.viewAllCCA(ccaList);
@@ -265,26 +377,43 @@ public class C206_CaseStudy {
 		}
 	}
 
+ 
+
 	public static boolean doApplyCCA(ArrayList<CCA> ccaList, String tag) {
 		boolean isReturned = false;
+
+ 
 
 		if (tag.isEmpty())
 			return false;
 
+ 
+
 		for (int i = 0; i < ccaList.size(); i++) {
+
+ 
 
 			if (tag.equalsIgnoreCase(ccaList.get(i).getccaName())
 
+ 
+
 					&& ccaList.get(i).getIsAvailable() == false) {
+
+ 
 
 				ccaList.get(i).setAvailable(true);
 				isReturned = true;
+
+ 
 
 			}
 		}
 		return isReturned;
 	}
 
+ 
+
+ 
 
 	public static void addUser(ArrayList<User> userList) {
 		C206_CaseStudy.setHeader("ADD USER");
@@ -295,32 +424,54 @@ public class C206_CaseStudy {
 		userPass = Helper.readString("ENTER CCA DESCRIPTION > ");
 		useRole = Helper.readString("ENTER CCA RESTRICTION > ");
 
+ 
+
 		userList.add(new User(userName, userPass, useRole));
+
+ 
 
 		System.out.println("USER ADDED! ");
 	}
 
+ 
+
 	public static boolean doDeleteUser(ArrayList<Student> userList, String CCA, String dueDate) {
 
+ 
+
 		boolean isLoaned = false;
+
+ 
 
 		if (CCA.isEmpty() || dueDate.isEmpty())
 			return false;
 
+ 
+
 		for (int i = 0; i < userList.size(); i++) {
+
+ 
 
 			if (CCA.equalsIgnoreCase(userList.get(i).getccaName()) && userList.get(i).getIsAvailable() == true) {
 
+ 
+
 				userList.remove(i);
 
+ 
+
 				isLoaned = true;
+
+ 
 
 			}
 		}
 		return isLoaned;
 	}
 
-	public static void deleteUser(ArrayList<Student> userList) {
+ 
+
+	public static void deleteUser(ArrayList<User> userList) {
 		C206_CaseStudy.viewAllUser(userList);
 		String tag = Helper.readString("Enter asset tag > ");
 		String due = Helper.readString("Enter due date > ");
@@ -332,30 +483,50 @@ public class C206_CaseStudy {
 		}
 	}
 
+ 
+
 	public static boolean doUpdateUser(ArrayList<Student> userList, String CCA) {
 		boolean isReturned = false;
+
+ 
 
 		if (CCA.isEmpty())
 			return false;
 
+ 
+
 		for (int i = 0; i < userList.size(); i++) {
+
+ 
 
 			if (CCA.equalsIgnoreCase(userList.get(i).getccaName())
 
+ 
+
 					&& userList.get(i).getIsAvailable() == false) {
+
+ 
 
 				userList.get(i).setAvailable(true);
 				isReturned = true;
+
+ 
 
 			}
 		}
 		return isReturned;
 	}
 
-	public static void updateUser(ArrayList<CCA> ccaList) {
+ 
+
+	public static void updateUser(ArrayList<User> userList) {
+
+ 
 
 	}
 
+ 
 
+ 
 
 }
