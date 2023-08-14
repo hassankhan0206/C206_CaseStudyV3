@@ -306,36 +306,18 @@ public class C206_CaseStudy {
 
  
 
-	public static boolean doUpdateLaptop(ArrayList<CCA> ccaList, String CCA) {
-		boolean isReturned = false;
-
- 
-
+	public static boolean doUpdateCCA(ArrayList<CCA> ccaList, String CCA, String desc, String restriction) {
+		boolean updated = false;
 		if (CCA.isEmpty())
 			return false;
-
- 
-
 		for (int i = 0; i < ccaList.size(); i++) {
-
- 
-
-			if (CCA.equalsIgnoreCase(ccaList.get(i).getccaName())
-
- 
-
-					&& ccaList.get(i).getIsAvailable() == false) {
-
- 
-
-				ccaList.get(i).setAvailable(true);
-				isReturned = true;
-
- 
-
+			if (CCA.equalsIgnoreCase(ccaList.get(i).getCcaName())) {
+				ccaList.get(i).setDescription(desc);
+				ccaList.get(i).setRestriction(restriction);
+				updated = true;
 			}
 		}
-		return isReturned;
+		return updated;
 	}
 
  
@@ -343,14 +325,17 @@ public class C206_CaseStudy {
 	public static void updateCCA(ArrayList<CCA> ccaList) {
 		C206_CaseStudy.viewAllCCA(ccaList);
 		String CCA = Helper.readString("Enter CCA > ");
-		Boolean isReturned = doUpdateLaptop(ccaList, CCA);
+		String desc = Helper.readString("Enter new description > ");
+		String restriction = Helper.readString("Enter new restriction > ");
+		Boolean updated = doUpdateCCA(ccaList, CCA, desc, restriction);
 
  
 
-		if (isReturned == false) {
+		if (updated == false) {
 			System.out.println("Invalid CCA");
 		} else {
 			System.out.println("CCA updated");
+			C206_CaseStudy.viewAllCCA(ccaList);
 		}
 	}
 
