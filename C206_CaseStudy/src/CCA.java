@@ -72,5 +72,3 @@ public class CCA {
 }
 
 
-has context menu
-Compose
