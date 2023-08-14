@@ -48,7 +48,7 @@ public class C206_CaseStudy {
 						if (stOption == 1) {
 							C206_CaseStudy.viewAllCCA(ccaList);
 						} else if (stOption == 2) {
-							C206_CaseStudy.applyCCA(ccaList);
+							C206_CaseStudy.applyCCA(ccaList, appList);
 						}
 
  
@@ -298,55 +298,42 @@ public class C206_CaseStudy {
 			C206_CaseStudy.viewAllCCA(ccaList);
 		}
 	}
-
-	public static void applyCCA(ArrayList<CCA> ccaList) {
-		C206_CaseStudy.viewAllCCA(ccaList);
-		String tag = Helper.readString("Enter CCA name > ");
-		String due = Helper.readString("Enter due date > ");
-		Boolean isLoaned = doApplyCCA(ccaList, tag);
-		if (isLoaned == false) {
-			System.out.println("Invalid asset tag");
-		} else {
-			System.out.println("Laptop " + tag + " loaned out");
-		}
+	
+	public static CCA findCCA(ArrayList<CCA> ccaList, String ccaName) {
+	    for (CCA cca : ccaList) {
+	        if (cca.getCcaName().equalsIgnoreCase(ccaName)) {
+	            return cca;
+	        }
+	    }
+	    return null;
+	}
+ 
+	public static boolean doApplyCCA(ArrayList<Application> appList, ArrayList<CCA> ccaList, String ccaName, String studentName) {
+	    boolean isApplied = false;
+	    
+	    CCA selectedCCA = findCCA(ccaList, ccaName);
+	    
+	    if (selectedCCA != null) {
+	        appList.add(new Application(studentName, ccaName, "Pending"));
+	        isApplied = true;
+	    }
+	    return isApplied;
 	}
 
- 
-
-	public static boolean doApplyCCA(ArrayList<CCA> ccaList, String tag) {
-		boolean isReturned = false;
-
- 
-
-		if (tag.isEmpty())
-			return false;
-
- 
-
-		for (int i = 0; i < ccaList.size(); i++) {
-
- 
-
-			if (tag.equalsIgnoreCase(ccaList.get(i).getccaName())
-
- 
-
-					&& ccaList.get(i).getIsAvailable() == false) {
-
- 
-
-				ccaList.get(i).setAvailable(true);
-				isReturned = true;
-
- 
-
-			}
-		}
-		return isReturned;
+	public static void applyCCA(ArrayList<CCA> ccaList, ArrayList<Application> appList) {
+	    C206_CaseStudy.viewAllCCA(ccaList);
+	    String studentName = Helper.readString("Enter your name > ");
+	    String ccaName = Helper.readString("Enter CCA name > ");
+	    
+	    boolean isApplied = doApplyCCA(appList, ccaList, ccaName, studentName);
+	    
+	    if (isApplied) {
+	        System.out.println("Application submitted for CCA: " + ccaName);
+	    } else {
+	        System.out.println("Invalid CCA name or CCA not available for application.");
+	    }
 	}
-
- 
-
+	 
  
 
 	public static void addUser(ArrayList<User> userList) {
