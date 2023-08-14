@@ -268,24 +268,12 @@ public class C206_CaseStudy {
 
  
 
-	public static boolean doDeleteCCA(ArrayList<CCA> ccaList, String CCA, String dueDate) {
-
- 
-
-		boolean isLoaned = false;
-
- 
-
-		if (CCA.isEmpty() || dueDate.isEmpty())
+	public static boolean doDeleteCCA(ArrayList<CCA> ccaList, String CCA) {
+		boolean deleted = false;
+		if (CCA.isEmpty())
 			return false;
-
- 
-
 		for (int i = 0; i < ccaList.size(); i++) {
-
- 
-
-			if (CCA.equalsIgnoreCase(ccaList.get(i).getccaName()) && ccaList.get(i).getIsAvailable() == true) {
+			if (CCA.equalsIgnoreCase(ccaList.get(i).getCcaName())) {
 
  
 
@@ -293,26 +281,26 @@ public class C206_CaseStudy {
 
  
 
-				isLoaned = true;
+				deleted = true;
 
  
 
 			}
 		}
-		return isLoaned;
+		return deleted;
 	}
 
  
 
 	public static void deleteCCA(ArrayList<CCA> ccaList) {
 		C206_CaseStudy.viewAllCCA(ccaList);
-		String tag = Helper.readString("Enter asset tag > ");
-		String due = Helper.readString("Enter due date > ");
-		Boolean isLoaned = doDeleteCCA(ccaList, tag, due);
+		String CCA = Helper.readString("Enter CCA name > ");
+		Boolean isLoaned = doDeleteCCA(ccaList, CCA);
 		if (isLoaned == false) {
-			System.out.println("Invalid asset tag");
+			System.out.println("Invalid CCA name");
 		} else {
-			System.out.println("Laptop " + tag + " loaned out");
+			System.out.println("CCA: " + CCA + " has been deleted");
+			C206_CaseStudy.viewAllCCA(ccaList);
 		}
 	}
 
