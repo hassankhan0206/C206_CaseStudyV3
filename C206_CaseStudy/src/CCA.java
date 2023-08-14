@@ -2,17 +2,16 @@ public class CCA {
     private String ccaName;
     private String description;
     private String restriction;
-    private boolean isAvailable;
+    private int capacity;
 
     // Constructor
-    public CCA(String ccaName, String description, String restriction) {
+    public CCA(String ccaName, String description, String restriction, int capacity) {
         this.ccaName = ccaName;
         this.description = description;
         this.restriction = restriction;
-        this.isAvailable = true; // Default to not available
+        this.capacity = capacity;
+        
     }
-
-    // Getter and setter methods for attributes
 
     public String getCcaName() {
         return ccaName;
@@ -37,17 +36,13 @@ public class CCA {
     public void setRestriction(String restriction) {
         this.restriction = restriction;
     }
-
-    public boolean isAvailable() {
-        return isAvailable;
+    
+    public int getCapacity() {
+    	return capacity;
     }
-
-    public void setAvailable(boolean available) {
-        isAvailable = available;
+    
+    public void setCapacity(int capacity) {
+    	this.capacity = capacity;
     }
-    @Override
-    public String toString() {
-        return "name: " + getCcaName() +
-                " Description: " + getDescription();
-    }
+       
 }

@@ -10,22 +10,20 @@ public class C206_CaseStudy {
 		ArrayList<CCA> ccaList = new ArrayList<CCA>();
 		ArrayList<User> userList = new ArrayList<User>();
 		ArrayList<Application> appList = new ArrayList<Application>();
+		ArrayList<Member> memberList = new ArrayList<Member>();
 
- 
-		ccaList.add(new CCA("NPCC",
-				"NPCC is a fulfilling and enriching co-curricular activity which allows cadets to learn and grow significantly in personal competencies and leadership.",
-				"Must have discipline!"));
-		ccaList.add(new CCA("Basketball",
-				"The Basketball CCA aims to provide students with the opportunity to hone basic basketball skills, which includes various ball handling and shooting techniques. ",
-				"Must have good leadership!"));
+		ccaList.add(new CCA("NPCC", "NPCC is a fulfilling and enriching co-curricular activity which allows cadets to learn and grow significantly in personal competencies and leadership."
+				, "Must have discipline!", 4));
+		ccaList.add(new CCA("Chinese Dance", "Understand the chinese culture by emersing yourself in their ways of dancing"
+				, "Must be able to speak chinese", 2));
 
 		userList.add(new User("admin", "adminpass", "Admin"));
 		userList.add(new User("teacher", "teacherpass", "Teacher"));
 		userList.add(new User("student", "studentpass", "Student"));
 		
-		appList.add(new Application("Wafiy", "Chinese Dance", "Pending"));
+		appList.add(new Application("Wafiy", "NPCC", "Pending"));
 		appList.add(new Application("Nicholas", "Girls Guides", "Pending"));
-		appList.add(new Application("Hassan", "Robotics", "Pending"));
+		appList.add(new Application("Hassan", "Girls Guides", "Pending"));
 
  
 		String userOpt = "";
@@ -89,8 +87,10 @@ public class C206_CaseStudy {
 						} else if (tOption == 3) {
 							C206_CaseStudy.updateCCA(ccaList);
 						} else if (tOption == 4) {
-							C206_CaseStudy.appStatus(appList); 
+							C206_CaseStudy.viewAllMembers(memberList);
 						} else if (tOption == 5) {
+							C206_CaseStudy.appStatus(appList); 
+						} else if (tOption == 6) {
 							C206_CaseStudy.viewAppStatus(appList);
 						}
 					} if (stOption == 9 || tOption == 9 || aOption == 9) {
@@ -204,13 +204,16 @@ public class C206_CaseStudy {
 	    	}
 	    }
 	    
-	    for (int i = 0; i < appList.size(); i++) {
-	    	if (appList.get(i).getStatus() == "Approve") {
-	    		
-	    	}
+	    char move = Helper.readChar("Move <APPROVED> application students to respective CCAs?");
+	    if (move == 'T' || move == 't') {
+	    	
 	    }
 	}
 
+	public static void viewMemberStatus(ArrayList<Member> memberList) {
+		
+	}
+	
 	public static String retrieveAllUser(ArrayList<Student> userList) {
 		String output = "";
 
