@@ -286,22 +286,12 @@ String output = "";
 
 	
 
-
- 
-
- 
-
-	public static void viewAllCCA(ArrayList<CCA> ccaList) {
-		C206_CaseStudy.setHeader("CCA LIST");
-		String output = String.format("%-10s %-30s %-20s\n", "CCA", "DESCRIPTION", "Restrictions");
-		 output += retrieveAllCCA(ccaList);	
-
- 
-
-		System.out.println(output);
-	}
-
- 
+    public static void viewAllCCA(ArrayList<CCA> ccaList) {
+        setHeader("CCA LIST");
+        for (CCA cca : ccaList) {
+            System.out.println(cca.toString());
+        }
+    }
 
 	
 	public static void viewAllUser(ArrayList<User> userList) {
