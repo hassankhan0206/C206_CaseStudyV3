@@ -113,7 +113,7 @@ public class C206_CaseStudy {
  
 
 					// Return laptop
-					C206_CaseStudy.deleteLaptop(ccaList);
+					C206_CaseStudy.deleteCCA(ccaList);
 
  
 
@@ -126,8 +126,11 @@ public class C206_CaseStudy {
  
 
 					// Return laptop
-					C206_CaseStudy.updateLaptop(ccaList);
+
+					C206_CaseStudy.updateCCA(ccaList);
 			} else if (aOption == 4) {
+
+
 				// Return item
 				C206_CaseStudy.setHeader("Add User");				
 
@@ -136,8 +139,10 @@ public class C206_CaseStudy {
  
 
 					// Return laptop
-					C206_CaseStudy.updateLaptop(ccaList);
+					C206_CaseStudy.updateUser(ccaList);
 			} else if (aOption == 5) {
+
+
 				// Return item
 				C206_CaseStudy.setHeader("Delete User");				
 
@@ -146,8 +151,11 @@ public class C206_CaseStudy {
  
 
 					// Return laptop
+
 					C206_CaseStudy.updateLaptop(ccaList);
 			} else if (aOption == 6) {
+
+
 				// Return item
 				C206_CaseStudy.setHeader("Update User");				
 
@@ -156,8 +164,11 @@ public class C206_CaseStudy {
  
 
 					// Return laptop
-					C206_CaseStudy.updateLaptop(ccaList);
+
+					C206_CaseStudy.updateUser(ccaList);
 			} else if (tOption == 4) {
+
+
 				// Return item
 				C206_CaseStudy.setHeader("Request Approval");				
 
@@ -166,8 +177,11 @@ public class C206_CaseStudy {
  
 
 					// Return laptop
+
 					C206_CaseStudy.updateLaptop(ccaList);
 			} else if (stOption == 9 || tOption == 9 || aOption == 9) {
+
+
 				System.out.println("Bye!");
 			} else {
 				System.out.println("Invalid option");
@@ -288,22 +302,12 @@ String output = "";
 
 	
 
-
- 
-
- 
-
-	public static void viewAllCCA(ArrayList<CCA> ccaList) {
-		C206_CaseStudy.setHeader("CCA LIST");
-		String output = String.format("%-10s %-30s %-20s\n", "CCA", "DESCRIPTION", "Restrictions");
-		 output += retrieveAllCCA(ccaList);	
-
- 
-
-		System.out.println(output);
-	}
-
- 
+    public static void viewAllCCA(ArrayList<CCA> ccaList) {
+        setHeader("CCA LIST");
+        for (CCA cca : ccaList) {
+            System.out.println(cca.toString());
+        }
+    }
 
 	
 	public static void viewAllUser(ArrayList<User> userList) {
@@ -390,7 +394,7 @@ String output = "";
 
  
 
-	public static void deleteLaptop(ArrayList<CCA> ccaList) {
+	public static void deleteCCA(ArrayList<CCA> ccaList) {
 		C206_CaseStudy.viewAllCCA(ccaList);
 		String tag = Helper.readString("Enter asset tag > ");
 		String due = Helper.readString("Enter due date > ");
