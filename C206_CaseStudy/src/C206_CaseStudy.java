@@ -50,8 +50,10 @@ public class C206_CaseStudy {
 						stOption = Helper.readInt("ENTER AN OPTION > ");
 						if (stOption == 1) {
 							C206_CaseStudy.viewAllCCA(ccaList);
+							loggedIn = true;
 						} else if (stOption == 2) {
 							C206_CaseStudy.applyCCA(ccaList, appList);
+							loggedIn = true;
 						}
 
  
@@ -63,16 +65,22 @@ public class C206_CaseStudy {
 						aOption = Helper.readInt("ENTER AN OPTION > ");
 						if (aOption == 1) {
 							C206_CaseStudy.addCCA(ccaList);
+							loggedIn = true;
 						} else if (aOption == 2) {
 							C206_CaseStudy.deleteCCA(ccaList);
+							loggedIn = true;
 						} else if (aOption == 3) {
 							C206_CaseStudy.updateCCA(ccaList);
+							loggedIn = true;
 						} else if (aOption == 4) {
 							C206_CaseStudy.addUser(userList);
+							loggedIn = true;
 						} else if (aOption == 5) {
 							C206_CaseStudy.deleteUser(userList);
+							loggedIn = true;
 						} else if (aOption == 6) {
 							C206_CaseStudy.updateUser(userList);
+							loggedIn = true;
 						}
 
  
@@ -84,16 +92,22 @@ public class C206_CaseStudy {
 						tOption = Helper.readInt("ENTER AN OPTION > ");
 						if (tOption == 1) {
 							C206_CaseStudy.addCCA(ccaList);
+							loggedIn = true;
 						} else if (tOption == 2) {
 							C206_CaseStudy.deleteCCA(ccaList);
+							loggedIn = true;
 						} else if (tOption == 3) {
 							C206_CaseStudy.updateCCA(ccaList);
+							loggedIn = true;
 						} else if (tOption == 4) {
 							C206_CaseStudy.viewCCA(ccaList);
+							loggedIn = true;
 						} else if (tOption == 5) {
 							C206_CaseStudy.appStatus(appList); 
+							loggedIn = true;
 						} else if (tOption == 6) {
 							C206_CaseStudy.viewAppStatus(appList);
+							loggedIn = true;
 						}
 					} if (stOption == 9 || tOption == 9 || aOption == 9) {
 						System.out.println("Logging out...");
@@ -293,8 +307,6 @@ public class C206_CaseStudy {
 		String restriction = Helper.readString("Enter new restriction > ");
 		Boolean updated = doUpdateCCA(ccaList, CCA, desc, restriction);
 
- 
-
 		if (updated == false) {
 			System.out.println("Invalid CCA");
 		} else {
@@ -338,8 +350,6 @@ public class C206_CaseStudy {
 	    }
 	}
 	 
- 
-
 	public static void addUser(ArrayList<User> userList) {
 		C206_CaseStudy.setHeader("ADD USER");
 		String userName = "";
@@ -357,39 +367,17 @@ public class C206_CaseStudy {
 
 	public static boolean doDeleteUser(ArrayList<User> userList, String name) {
 
- 
-
 		boolean deleted = false;
-
- 
-
 		if (name.isEmpty())
 			return false;
-
- 
-
 		for (int i = 0; i < userList.size(); i++) {
-
- 
-
 			if (name.equalsIgnoreCase(userList.get(i).getUsername())) {
-
- 
-
 				userList.remove(i);
-
- 
-
 				deleted = true;
-
- 
-
 			}
 		}
 		return deleted;
 	}
-
- 
 
 	public static void deleteUser(ArrayList<User> userList) {
 		C206_CaseStudy.viewAllUser(userList);
@@ -406,33 +394,18 @@ public class C206_CaseStudy {
 	public static boolean doUpdateUser(ArrayList<User> userList, String name, String password, String role) {
 		boolean isReturned = false;
 
- 
-
 		if (name.isEmpty())
 			return false;
 
- 
-
 		for (int i = 0; i < userList.size(); i++) {
-
- 
-
 			if (name.equalsIgnoreCase(userList.get(i).getUsername())) {
-
- 
-
 				userList.get(i).setPassword(password);
 				userList.get(i).setRole(role);
 				isReturned = true;
-
- 
-
 			}
 		}
 		return isReturned;
 	}
-
- 
 
 	public static void updateUser(ArrayList<User> userList) {
 		C206_CaseStudy.viewAllUser(userList);
@@ -446,13 +419,5 @@ public class C206_CaseStudy {
 			System.out.println("User " + name + "'s details have been updated");
 			C206_CaseStudy.viewAllUser(userList);
 		}
-
- 
-
 	}
-
- 
-
- 
-
 }
