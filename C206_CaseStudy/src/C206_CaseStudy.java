@@ -11,7 +11,7 @@ public class C206_CaseStudy {
 		ArrayList<User> userList = new ArrayList<User>();
 		ArrayList<Application> appList = new ArrayList<Application>();
 
-		ccaList.add(new CCA("NPCC", "NPCC is a fulfilling and enriching co-curricular activity which allows cadets to learn and grow significantly in personal competencies and leadership."
+		ccaList.add(new CCA("NPCC", "NPCC is a fulfilling and enriching co-curricular activity which allows cadets to learn and grow."
 				, "Must have discipline!", 4));
 		ccaList.add(new CCA("Chinese Dance", "Understand the chinese culture by emersing yourself in their ways of dancing"
 				, "Must be able to speak chinese", 2));
@@ -91,21 +91,15 @@ public class C206_CaseStudy {
 						C206_CaseStudy.teacherMenu();
 						tOption = Helper.readInt("ENTER AN OPTION > ");
 						if (tOption == 1) {
-							C206_CaseStudy.addCCA(ccaList);
+							C206_CaseStudy.updateCCAmembers(ccaList);
 							loggedIn = true;
 						} else if (tOption == 2) {
-							C206_CaseStudy.deleteCCA(ccaList);
-							loggedIn = true;
-						} else if (tOption == 3) {
-							C206_CaseStudy.updateCCA(ccaList);
-							loggedIn = true;
-						} else if (tOption == 4) {
 							C206_CaseStudy.viewCCA(ccaList);
 							loggedIn = true;
-						} else if (tOption == 5) {
-							C206_CaseStudy.appStatus(appList); 
+						} else if (tOption == 3) {
+							C206_CaseStudy.appStatus(appList);
 							loggedIn = true;
-						} else if (tOption == 6) {
+						} else if (tOption == 4) {
 							C206_CaseStudy.viewAppStatus(appList);
 							loggedIn = true;
 						}
@@ -119,6 +113,7 @@ public class C206_CaseStudy {
 		}
 	}
 
+
 	public static void studentMenu() {
 		C206_CaseStudy.setHeader("CCA APPLICATION APP");
 		Helper.line(80, "-");
@@ -131,12 +126,10 @@ public class C206_CaseStudy {
 	public static void teacherMenu() {
 		C206_CaseStudy.setHeader("CCA APPLICATION APP");
 		Helper.line(80, "-");
-		System.out.println("1. Add CCA");
-		System.out.println("2. Delete CCA");
-		System.out.println("3. Update CCA");
-		System.out.println("4. View CCA");
-		System.out.println("5. Update application status");
-		System.out.println("6. View applications status");
+		System.out.println("1. Update CCA members");
+		System.out.println("2. View CCA");
+		System.out.println("3. Update application status");
+		System.out.println("4. View application status");
 		System.out.println("9. Quit");
 		Helper.line(80, "-");
 	}
@@ -228,11 +221,11 @@ public class C206_CaseStudy {
 	public static void viewAllCCA(ArrayList<CCA> ccaList) {
 		
 	    setHeader("CCA LIST");
-	    System.out.printf("%-20s %-70s %-10s%n", "CCA Name", "Description", "Restriction");
-	    Helper.line(120, "-");
+	    System.out.printf("%-20s %-100s %-30s %30s%n", "CCA Name", "Description", "Restriction","Capacity");
+	    Helper.line(200, "-");
 
 	    for (CCA cca : ccaList) {
-	        System.out.printf("%-20s %-70s %-30s%n", cca.getCcaName(), cca.getDescription(), cca.getRestriction());
+	        System.out.printf("%-20s %-100s %-30s %30d%n", cca.getCcaName(), cca.getDescription(), cca.getRestriction(), cca.getCapacity());
 	    }
 	}
 
@@ -420,4 +413,30 @@ public class C206_CaseStudy {
 			C206_CaseStudy.viewAllUser(userList);
 		}
 	}
+	public static boolean doUpdateCCAmember(ArrayList<CCA> ccaList, String ccaName, int capacity) {
+		boolean isUpdated = false;
+		if(ccaName.isEmpty()){
+			isUpdated = false;
+		}
+		for(int i = 0; i < ccaList.size(); i++) {
+			if (ccaName.equalsIgnoreCase(ccaList.get(i).getCcaName())) {
+				ccaList.get(i).setCapacity(capacity + ccaList.get(i).getCapacity());
+				isUpdated = true;
+			}
+		}
+		return isUpdated;
+	}
+	public static void updateCCAmembers(ArrayList<CCA> ccaList) {
+	    C206_CaseStudy.viewAllCCA(ccaList);
+	    String ccaName = Helper.readString("Enter CCA to update > ");
+	    int capacity = Helper.readInt("Enter amount to add > ");
+	    boolean updated = doUpdateCCAmember(ccaList, ccaName, capacity);
+		if (updated == false) {
+			System.out.println("Update unsuccessful!");
+		} else {
+			System.out.println("User " + ccaName + "'s details have been updated");
+			C206_CaseStudy.viewAllCCA(ccaList);
+		}
+	}
+	
 }
