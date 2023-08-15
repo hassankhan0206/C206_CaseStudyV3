@@ -91,21 +91,15 @@ public class C206_CaseStudy {
 						C206_CaseStudy.teacherMenu();
 						tOption = Helper.readInt("ENTER AN OPTION > ");
 						if (tOption == 1) {
-							C206_CaseStudy.addCCA(ccaList);
+							C206_CaseStudy.updateCCAmembers(ccaList);
 							loggedIn = true;
 						} else if (tOption == 2) {
-							C206_CaseStudy.deleteCCA(ccaList);
-							loggedIn = true;
-						} else if (tOption == 3) {
-							C206_CaseStudy.updateCCA(ccaList);
-							loggedIn = true;
-						} else if (tOption == 4) {
 							C206_CaseStudy.viewCCA(ccaList);
 							loggedIn = true;
-						} else if (tOption == 5) {
-							C206_CaseStudy.appStatus(appList); 
+						} else if (tOption == 3) {
+							C206_CaseStudy.appStatus(appList);
 							loggedIn = true;
-						} else if (tOption == 6) {
+						} else if (tOption == 4) {
 							C206_CaseStudy.viewAppStatus(appList);
 							loggedIn = true;
 						}
@@ -131,12 +125,10 @@ public class C206_CaseStudy {
 	public static void teacherMenu() {
 		C206_CaseStudy.setHeader("CCA APPLICATION APP");
 		Helper.line(80, "-");
-		System.out.println("1. Add CCA");
-		System.out.println("2. Delete CCA");
-		System.out.println("3. Update CCA");
-		System.out.println("4. View CCA");
-		System.out.println("5. Update application status");
-		System.out.println("6. View applications status");
+		System.out.println("1. Update CCA members");
+		System.out.println("2. View CCA");
+		System.out.println("3. Update application status");
+		System.out.println("4. View application status");
 		System.out.println("9. Quit");
 		Helper.line(80, "-");
 	}
