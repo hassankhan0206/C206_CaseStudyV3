@@ -355,15 +355,15 @@ public class C206_CaseStudy {
 		C206_CaseStudy.viewAllUser(userList);
 	}
 
-	public static boolean doDeleteUser(ArrayList<Student> userList, String CCA, String dueDate) {
+	public static boolean doDeleteUser(ArrayList<User> userList, String name) {
 
  
 
-		boolean isLoaned = false;
+		boolean deleted = false;
 
  
 
-		if (CCA.isEmpty() || dueDate.isEmpty())
+		if (name.isEmpty())
 			return false;
 
  
@@ -372,7 +372,7 @@ public class C206_CaseStudy {
 
  
 
-			if (CCA.equalsIgnoreCase(userList.get(i).getccaName()) && userList.get(i).getIsAvailable() == true) {
+			if (name.equalsIgnoreCase(userList.get(i).getUsername())) {
 
  
 
@@ -380,35 +380,35 @@ public class C206_CaseStudy {
 
  
 
-				isLoaned = true;
+				deleted = true;
 
  
 
 			}
 		}
-		return isLoaned;
+		return deleted;
 	}
 
  
 
 	public static void deleteUser(ArrayList<User> userList) {
 		C206_CaseStudy.viewAllUser(userList);
-		String tag = Helper.readString("Enter asset tag > ");
-		String due = Helper.readString("Enter due date > ");
-		Boolean isLoaned = doDeleteCCA(userList, tag, due);
-		if (isLoaned == false) {
-			System.out.println("Invalid asset tag");
+		String name = Helper.readString("Enter username to delete > ");
+		Boolean deleted = doDeleteUser(userList, name);
+		if (deleted == false) {
+			System.out.println("Invalid username");
 		} else {
-			System.out.println("Laptop " + tag + " loaned out");
+			System.out.println("User " + name + " has been deleted");
+			C206_CaseStudy.viewAllUser(userList);
 		}
 	}
 
-	public static boolean doUpdateUser(ArrayList<Student> userList, String CCA) {
+	public static boolean doUpdateUser(ArrayList<User> userList, String name, String password, String role) {
 		boolean isReturned = false;
 
  
 
-		if (CCA.isEmpty())
+		if (name.isEmpty())
 			return false;
 
  
@@ -417,15 +417,12 @@ public class C206_CaseStudy {
 
  
 
-			if (CCA.equalsIgnoreCase(userList.get(i).getccaName())
+			if (name.equalsIgnoreCase(userList.get(i).getUsername())) {
 
  
 
-					&& userList.get(i).getIsAvailable() == false) {
-
- 
-
-				userList.get(i).setAvailable(true);
+				userList.get(i).setPassword(password);
+				userList.get(i).setRole(role);
 				isReturned = true;
 
  
@@ -438,6 +435,17 @@ public class C206_CaseStudy {
  
 
 	public static void updateUser(ArrayList<User> userList) {
+		C206_CaseStudy.viewAllUser(userList);
+		String name = Helper.readString("Enter username to update > ");
+		String password = Helper.readString("Enter new password > ");
+		String role = Helper.readString("Enter new role > ");
+		Boolean updated = doUpdateUser(userList, name, password, role);
+		if (updated == false) {
+			System.out.println("Invalid username");
+		} else {
+			System.out.println("User " + name + "'s details have been updated");
+			C206_CaseStudy.viewAllUser(userList);
+		}
 
  
 
