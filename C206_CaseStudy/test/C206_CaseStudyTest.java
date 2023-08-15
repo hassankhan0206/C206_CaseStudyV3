@@ -22,7 +22,7 @@ public class C206_CaseStudyTest {
 	}
 	
 	@Test
-	public void testViewAppStatus() {
+	public void testViewAppStatus() {  //wafiy
 		ArrayList<Application> appList = new ArrayList<>();
 		
 		appList.add(new Application("Wafiy", "NPCC", "Pending"));
@@ -37,7 +37,7 @@ public class C206_CaseStudyTest {
 	}
 	
 	@Test
-    public void testAppStatusApproveAndRemove() {
+    public void testAppStatusApproveAndRemove() { //wafiy
         ArrayList<Application> appList = new ArrayList<>();
         appList.add(new Application("Wafiy", "NPCC", "Pending"));
 
@@ -46,7 +46,7 @@ public class C206_CaseStudyTest {
     }
 
     @Test
-    public void testAppStatusRejectAndKeep() {
+    public void testAppStatusRejectAndKeep() { //wafiy
         ArrayList<Application> appList = new ArrayList<>();
     
         appList.add(new Application("Nicholas", "Girls Guides", "Pending"));
@@ -57,7 +57,7 @@ public class C206_CaseStudyTest {
     }
 
     @Test
-    public void testAppStatusInvalidStudent() {
+    public void testAppStatusInvalidStudent() { //wafiy
         ArrayList<Application> appList = new ArrayList<>();
         
         appList.add(new Application("Wafiy", "NPCC", "Pending"));
@@ -67,7 +67,7 @@ public class C206_CaseStudyTest {
     }
     
     @Test
-    public void testUpdateUserValid() {
+    public void testUpdateUserValid() { // wafiy
         ArrayList<User> userList = new ArrayList<>();
 
         userList.add(new User("admin", "adminpass", "Admin"));
@@ -80,7 +80,7 @@ public class C206_CaseStudyTest {
     }
     
     @Test
-    public void testUpdateUserInvalidName() {
+    public void testUpdateUserInvalidName() { //wafiy
         ArrayList<User> userList = new ArrayList<>();
         userList.add(new User("admin", "adminpass", "Admin"));
         userList.add(new User("teacher", "teacherpass", "Teacher"));
@@ -93,7 +93,7 @@ public class C206_CaseStudyTest {
     }
     
     @Test
-    public void testDoDeleteUserValid() {
+    public void testDoDeleteUserValid() { //wafiy
         ArrayList<User> userList = new ArrayList<>();
         userList.add(new User("admin", "adminpass", "Admin"));
         userList.add(new User("teacher", "teacherpass", "Teacher"));
@@ -106,7 +106,7 @@ public class C206_CaseStudyTest {
     }
     
     @Test
-    public void testDeleteUserValid() {
+    public void testDeleteUserValid() { // wafiy
         ArrayList<User> userList = new ArrayList<>();
         userList.add(new User("admin", "adminpass", "Admin"));
         userList.add(new User("teacher", "teacherpass", "Teacher"));
