@@ -118,6 +118,48 @@ public class C206_CaseStudyTest {
         assertEquals("teacher", userList.get(0).getUsername());
 
     }
+    
+    public static void addCCA(ArrayList<CCA> ccaList, String ccaName, String desc, String rest) {
+        if (ccaName.isEmpty()) {
+            throw new IllegalArgumentException("CCA name cannot be empty");
+        }
+
+        ccaList.add(new CCA(ccaName, desc, rest, 0));
+    }
+    
+
+    @Test
+    public void testAddCCANormal() {
+        ArrayList<CCA> ccaList = new ArrayList<>();
+
+        addCCA(ccaList, "Football Club", "Sports activity", "No restrictions");
+
+        // Assert the CCA has been added successfully
+        assertEquals("Incorrect CCA count after adding", 1, ccaList.size());
+    }
+
+   
+
+	@Test
+    public void testAddCCABoundary() {
+        ArrayList<CCA> ccaList = new ArrayList<>();
+
+        // Add multiple CCAs to test boundary condition
+        addCCA(ccaList, "Chess Club", "Mental exercise", "No restrictions");
+        addCCA(ccaList, "Art Club", "Creative expression", "No restrictions");
+        addCCA(ccaList, "Dance Club", "Physical activity", "No restrictions");
+
+        // Assert the CCAs have been added successfully
+        assertEquals("Incorrect CCA count after adding", 3, ccaList.size());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testAddCCAError() {
+        ArrayList<CCA> ccaList = new ArrayList<>();
+
+        // Attempt to add a CCA with an empty name to trigger an error condition
+        addCCA(ccaList, "", "Invalid CCA", "No restrictions");
+    }
 
     
 
