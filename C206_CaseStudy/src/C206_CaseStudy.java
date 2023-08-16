@@ -342,7 +342,7 @@ public class C206_CaseStudy {
 	        System.out.println("Invalid CCA name or CCA not available for application.");
 	    }
 	}
-	 
+	
 	public static void addUser(ArrayList<User> userList) {
 		C206_CaseStudy.setHeader("ADD USER");
 		String userName = "";
