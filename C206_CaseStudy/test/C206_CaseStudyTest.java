@@ -269,15 +269,13 @@ public class C206_CaseStudyTest {
 
         // Add multiple CCAs to test boundary condition
 
-        addCCA(ccaList, "Chess Club", "Mental exercise", "No restrictions");
+        addCCA(ccaList, "NPCC", "Mental exercise", "No restrictions");
 
-        addCCA(ccaList, "Art Club", "Creative expression", "No restrictions");
-
-        addCCA(ccaList, "Dance Club", "Physical activity", "No restrictions");
+        addCCA(ccaList, "ChineseDance", "Creative expression", "No restrictions");
 
         // Assert the CCAs have been added successfully
 
-        assertEquals("Incorrect CCA count after adding", 3, ccaList.size());
+        assertEquals("Incorrect CCA count after adding", 2, ccaList.size());
 
     }
 
@@ -303,6 +301,49 @@ public class C206_CaseStudyTest {
         assertEquals("userpass", addedUser.getPassword());
         assertEquals("Admin", addedUser.getRole());
     }
+    
+  
+    @Before
+    public void setUp1() throws Exception {
+    	ArrayList<CCA> ccaList = new ArrayList<CCA>();
+        ccaList = new ArrayList<>();
+        ccaList.add(new CCA("NPCC", "NPCC is a fulfilling and enriching co-curricular activity which allows cadets to learn and grow."
+            , "Must have discipline!", 4));
+        ccaList.add(new CCA("Chinese Dance", "Understand the chinese culture by emersing yourself in their ways of dancing"
+            , "Must be able to speak chinese", 2));
+    }
 
+    @After
+    public void tearDown1() throws Exception {
+    	ArrayList<CCA> ccaList = new ArrayList<CCA>();
+        ccaList.clear();
+    }
+
+    @Test
+    public void testDeleteCCAValid() {
+    	ArrayList<CCA> ccaList = new ArrayList<CCA>();
+    	
+    	 ccaList.add(new CCA("NPCC", "NPCC is a fulfilling and enriching co-curricular activity which allows cadets to learn and grow."
+    	            , "Must have discipline!", 4));
+    	 ccaList.add(new CCA("Chinese Dance", "Understand the chinese culture by emersing yourself in their ways of dancing"
+    	            , "Must be able to speak chinese", 2));
+        C206_CaseStudy.deleteCCA(ccaList);
+
+        assertEquals(1, ccaList.size());
+        assertEquals("Chinese Dance", ccaList.get(0).getCcaName());
+    }
+
+    @Test
+    public void testDeleteCCAInvalid() {
+    	ArrayList<CCA> ccaList = new ArrayList<CCA>();
+    	
+    	 ccaList.add(new CCA("NPCC", "NPCC is a fulfilling and enriching co-curricular activity which allows cadets to learn and grow."
+    	            , "Must have discipline!", 4));
+    	 ccaList.add(new CCA("Chinese Dance", "Understand the chinese culture by emersing yourself in their ways of dancing"
+    	            , "Must be able to speak chinese", 2));
+        C206_CaseStudy.deleteCCA(ccaList);
+
+        assertEquals(2, ccaList.size());
+    }
 }
 
