@@ -182,10 +182,9 @@ public class C206_CaseStudy {
 	    String sStatus = Helper.readString("ENTER APPLICATION STATUS, <YES FOR APPROVE, NO FOR REJECT>");
 
 	    int matchingIndex = -1;
-	   
+
 	    for (int i = 0; i < appList.size(); i++) {
-	    	String studentName = appList.get(i).getStudentName();
-	        if (sName.equalsIgnoreCase(studentName)) {
+	        if (sName.equalsIgnoreCase(appList.get(i).getStudentName())) {
 	            matchingIndex = i;
 	            break;
 	        }
@@ -285,8 +284,7 @@ public class C206_CaseStudy {
 		if (CCA.isEmpty())
 			return false;
 		for (int i = 0; i < ccaList.size(); i++) {
-			String ccaNameRe = ccaList.get(i).getCcaName();
-			if (CCA.equalsIgnoreCase(ccaNameRe)) {
+			if (CCA.equalsIgnoreCase(ccaList.get(i).getCcaName())) {
 				ccaList.get(i).setDescription(desc);
 				ccaList.get(i).setRestriction(restriction);
 				updated = true;
@@ -366,11 +364,10 @@ public class C206_CaseStudy {
 		if (name.isEmpty())
 			return false;
 		for (int i = 0; i < userList.size(); i++) {
-			String usernameRe = userList.get(i).getUsername();
-			if (name.equalsIgnoreCase(usernameRe)) {
+			if (name.equalsIgnoreCase(userList.get(i).getUsername())) {
 				userList.remove(i);
 				deleted = true;
-			} //test push
+			}
 		}
 		return deleted;
 	}
@@ -441,61 +438,5 @@ public class C206_CaseStudy {
 			C206_CaseStudy.viewAllCCA(ccaList);
 		}
 	}
-
-	public static void updateTimeSlotPreferences(ArrayList<User> userList) {
-	    String studentName = Helper.readString("Enter your name > ");
-	    String newTimeSlot = Helper.readString("Enter your new preferred time slot > ");
-
-	    for (User user : userList) {
-	        if (user.getRole().equalsIgnoreCase("Student") && user.getUsername().equalsIgnoreCase(studentName)) {
-	            user.setTimeSlotPreference(newTimeSlot);
-	            System.out.println("Preferred time slot updated for " + studentName);
-	            return;
-	        }
-	    }
-
-	    System.out.println("Student not found or invalid role");
-	}
-	public static void searchTimeSlotPreference(ArrayList<User> userList) {
-	    String studentName = Helper.readString("Enter student name > ");
-
-	    for (User user : userList) {
-	        if (user.getRole().equalsIgnoreCase("Student") && user.getUsername().equalsIgnoreCase(studentName)) {
-	            System.out.println(studentName + "'s preferred time slot: " + user.getTimeSlotPreference());
-	            return;
-	        }
-	    }
-
-	    System.out.println("Student not found or invalid role");
-	}
-	public static void updateAttendance(ArrayList<Attendance> attendanceList) {
-	    String studentName = Helper.readString("Enter student name > ");
-	    String activityName = Helper.readString("Enter activity name > ");
-	    String newAttendanceStatus = Helper.readString("Enter new attendance status (Present/Absent) > ");
-
-	    for (Attendance attendance : attendanceList) {
-	        if (attendance.getStudentName().equalsIgnoreCase(studentName) && attendance.getActivityName().equalsIgnoreCase(activityName)) {
-	            attendance.setAttendanceStatus(newAttendanceStatus);
-	            System.out.println("Attendance updated for " + studentName + " in " + activityName);
-	            return;
-	        }
-	    }
-
-	    System.out.println("Attendance record not found");
-	}
-	public static void searchAttendance(ArrayList<Attendance> attendanceList) {
-	    String studentName = Helper.readString("Enter student name > ");
-	    String activityName = Helper.readString("Enter activity name > ");
-
-	    for (Attendance attendance : attendanceList) {
-	        if (attendance.getStudentName().equalsIgnoreCase(studentName) && attendance.getActivityName().equalsIgnoreCase(activityName)) {
-	            System.out.println("Attendance status for " + studentName + " in " + activityName + ": " + attendance.getAttendanceStatus());
-	            return;
-	        }
-	    }
-
-	    System.out.println("Attendance record not found");
-	}
-
-
+	
 }
