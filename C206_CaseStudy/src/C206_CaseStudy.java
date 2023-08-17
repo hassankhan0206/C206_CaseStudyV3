@@ -370,7 +370,7 @@ public class C206_CaseStudy {
 			if (name.equalsIgnoreCase(usernameRe)) {
 				userList.remove(i);
 				deleted = true;
-			}
+			} //test push
 		}
 		return deleted;
 	}
