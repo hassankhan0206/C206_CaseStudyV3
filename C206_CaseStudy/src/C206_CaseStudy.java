@@ -182,9 +182,10 @@ public class C206_CaseStudy {
 	    String sStatus = Helper.readString("ENTER APPLICATION STATUS, <YES FOR APPROVE, NO FOR REJECT>");
 
 	    int matchingIndex = -1;
-
+	   
 	    for (int i = 0; i < appList.size(); i++) {
-	        if (sName.equalsIgnoreCase(appList.get(i).getStudentName())) {
+	    	String studentName = appList.get(i).getStudentName();
+	        if (sName.equalsIgnoreCase(studentName)) {
 	            matchingIndex = i;
 	            break;
 	        }
@@ -284,7 +285,8 @@ public class C206_CaseStudy {
 		if (CCA.isEmpty())
 			return false;
 		for (int i = 0; i < ccaList.size(); i++) {
-			if (CCA.equalsIgnoreCase(ccaList.get(i).getCcaName())) {
+			String ccaNameRe = ccaList.get(i).getCcaName();
+			if (CCA.equalsIgnoreCase(ccaNameRe)) {
 				ccaList.get(i).setDescription(desc);
 				ccaList.get(i).setRestriction(restriction);
 				updated = true;
@@ -364,7 +366,8 @@ public class C206_CaseStudy {
 		if (name.isEmpty())
 			return false;
 		for (int i = 0; i < userList.size(); i++) {
-			if (name.equalsIgnoreCase(userList.get(i).getUsername())) {
+			String usernameRe = userList.get(i).getUsername();
+			if (name.equalsIgnoreCase(usernameRe)) {
 				userList.remove(i);
 				deleted = true;
 			}
