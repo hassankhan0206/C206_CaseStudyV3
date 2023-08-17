@@ -345,5 +345,41 @@ public class C206_CaseStudyTest {
 
         assertEquals(2, ccaList.size());
     }
+    
+    @Test
+    public void testDoUpdateCCAValid() {
+        ArrayList<CCA> ccaList = new ArrayList<>();
+        ccaList.add(new CCA("NPCC", "NPCC is a fulfilling and enriching co-curricular activity which allows cadets to learn and grow."
+            , "Must have discipline!", 4));
+        ccaList.add(new CCA("Chinese Dance", "Understand the chinese culture by emersing yourself in their ways of dancing"
+            , "Must be able to speak chinese", 2));
+
+        boolean result = C206_CaseStudy.doUpdateCCA(ccaList, "NPCC", "NPCC description updated", "Updated restriction");
+        assertTrue(result);
+
+        assertEquals("NPCC description updated", ccaList.get(0).getDescription());
+        assertEquals("Updated restriction", ccaList.get(0).getRestriction());
+        assertEquals("Must be able to speak chinese", ccaList.get(1).getRestriction());
+    }
+
+    @Test
+    public void testDoUpdateCCAInvalid() {
+        ArrayList<CCA> ccaList = new ArrayList<>();
+        ccaList.add(new CCA("NPCC", "NPCC is a fulfilling and enriching co-curricular activity which allows cadets to learn and grow."
+            , "Must have discipline!", 4));
+        ccaList.add(new CCA("Chinese Dance", "Understand the chinese culture by emersing yourself in their ways of dancing"
+            , "Must be able to speak chinese", 2));
+
+        boolean result = C206_CaseStudy.doUpdateCCA(ccaList, "Football Club", "New description", "New restriction");
+        assertFalse(result);
+
+        assertEquals("NPCC is a fulfilling and enriching co-curricular activity which allows cadets to learn and grow.",
+                     ccaList.get(0).getDescription());
+        assertEquals("Must have discipline!", ccaList.get(0).getRestriction());
+        assertEquals("Must be able to speak chinese", ccaList.get(1).getRestriction());
+    }
+
+    
+    
 }
 
