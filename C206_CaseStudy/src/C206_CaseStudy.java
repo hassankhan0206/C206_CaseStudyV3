@@ -360,7 +360,8 @@ public class C206_CaseStudy {
 		if (name.isEmpty())
 			return false;
 		for (int i = 0; i < userList.size(); i++) {
-			if (name.equalsIgnoreCase(userList.get(i).getUsername())) {
+			String name2 = userList.get(i).getUsername();
+			if (name.equalsIgnoreCase(name2)) {
 				userList.remove(i);
 				deleted = true;
 			}
@@ -416,7 +417,8 @@ public class C206_CaseStudy {
 			isUpdated = false;
 		}
 		for(int i = 0; i < ccaList.size(); i++) {
-			if (ccaName.equalsIgnoreCase(ccaList.get(i).getCcaName())) {
+			String value = ccaList.get(i).getCcaName();
+			if (ccaName.equalsIgnoreCase(value)) {
 				ccaList.get(i).setCapacity(capacity + ccaList.get(i).getCapacity());
 				isUpdated = true;
 			}
