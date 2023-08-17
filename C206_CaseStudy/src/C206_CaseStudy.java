@@ -11,10 +11,6 @@ public class C206_CaseStudy {
 		ArrayList<User> userList = new ArrayList<User>();
 		ArrayList<Application> appList = new ArrayList<Application>();
 
-		ccaList.add(new CCA("NPCC", "NPCC is a fulfilling and enriching co-curricular activity which allows cadets to learn and grow."
-				, "Must have discipline!", 4));
-		ccaList.add(new CCA("Chinese Dance", "Understand the chinese culture by emersing yourself in their ways of dancing"
-				, "Must be able to speak chinese", 2));
 
 		userList.add(new User("admin", "adminpass", "Admin"));
 		userList.add(new User("teacher", "teacherpass", "Teacher"));
@@ -413,6 +409,7 @@ public class C206_CaseStudy {
 			C206_CaseStudy.viewAllUser(userList);
 		}
 	}
+	//push
 	public static boolean doUpdateCCAmember(ArrayList<CCA> ccaList, String ccaName, int capacity) {
 		boolean isUpdated = false;
 		if(ccaName.isEmpty()){
@@ -438,5 +435,38 @@ public class C206_CaseStudy {
 			C206_CaseStudy.viewAllCCA(ccaList);
 		}
 	}
+
+
 	
+	public static void updateAttendance(ArrayList<Attendance> attendanceList) {
+	    String studentName = Helper.readString("Enter student name > ");
+	    String activityName = Helper.readString("Enter activity name > ");
+	    String newAttendanceStatus = Helper.readString("Enter new attendance status (Present/Absent) > ");
+
+	    for (Attendance attendance : attendanceList) {
+	        if (attendance.getStudentName().equalsIgnoreCase(studentName) && attendance.getActivityName().equalsIgnoreCase(activityName)) {
+	            attendance.setAttendanceStatus(newAttendanceStatus);
+	            System.out.println("Attendance updated for " + studentName + " in " + activityName);
+	            return;
+	        }
+	    }
+
+	    System.out.println("Attendance record not found");
+	}
+	public static void searchAttendance(ArrayList<Attendance> attendanceList) {
+	    String studentName = Helper.readString("Enter student name > ");
+	    String activityName = Helper.readString("Enter activity name > ");
+
+	    for (Attendance attendance : attendanceList) {
+	        if (attendance.getStudentName().equalsIgnoreCase(studentName) && attendance.getActivityName().equalsIgnoreCase(activityName)) {
+	            System.out.println("Attendance status for " + studentName + " in " + activityName + ": " + attendance.getAttendanceStatus());
+	            return;
+	        }
+	    }
+
+	    System.out.println("Attendance record not found");
+	}
+
+
 }
+
