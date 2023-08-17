@@ -370,7 +370,7 @@ public class C206_CaseStudy {
 			if (name.equalsIgnoreCase(usernameRe)) {
 				userList.remove(i);
 				deleted = true;
-			}
+			} //test push
 		}
 		return deleted;
 	}
@@ -441,6 +441,61 @@ public class C206_CaseStudy {
 			C206_CaseStudy.viewAllCCA(ccaList);
 		}
 	}
-	
+
+	public static void updateTimeSlotPreferences(ArrayList<User> userList) {
+	    String studentName = Helper.readString("Enter your name > ");
+	    String newTimeSlot = Helper.readString("Enter your new preferred time slot > ");
+
+	    for (User user : userList) {
+	        if (user.getRole().equalsIgnoreCase("Student") && user.getUsername().equalsIgnoreCase(studentName)) {
+	            user.setTimeSlotPreference(newTimeSlot);
+	            System.out.println("Preferred time slot updated for " + studentName);
+	            return;
+	        }
+	    }
+
+	    System.out.println("Student not found or invalid role");
+	}
+	public static void searchTimeSlotPreference(ArrayList<User> userList) {
+	    String studentName = Helper.readString("Enter student name > ");
+
+	    for (User user : userList) {
+	        if (user.getRole().equalsIgnoreCase("Student") && user.getUsername().equalsIgnoreCase(studentName)) {
+	            System.out.println(studentName + "'s preferred time slot: " + user.getTimeSlotPreference());
+	            return;
+	        }
+	    }
+
+	    System.out.println("Student not found or invalid role");
+	}
+	public static void updateAttendance(ArrayList<Attendance> attendanceList) {
+	    String studentName = Helper.readString("Enter student name > ");
+	    String activityName = Helper.readString("Enter activity name > ");
+	    String newAttendanceStatus = Helper.readString("Enter new attendance status (Present/Absent) > ");
+
+	    for (Attendance attendance : attendanceList) {
+	        if (attendance.getStudentName().equalsIgnoreCase(studentName) && attendance.getActivityName().equalsIgnoreCase(activityName)) {
+	            attendance.setAttendanceStatus(newAttendanceStatus);
+	            System.out.println("Attendance updated for " + studentName + " in " + activityName);
+	            return;
+	        }
+	    }
+
+	    System.out.println("Attendance record not found");
+	}
+	public static void searchAttendance(ArrayList<Attendance> attendanceList) {
+	    String studentName = Helper.readString("Enter student name > ");
+	    String activityName = Helper.readString("Enter activity name > ");
+
+	    for (Attendance attendance : attendanceList) {
+	        if (attendance.getStudentName().equalsIgnoreCase(studentName) && attendance.getActivityName().equalsIgnoreCase(activityName)) {
+	            System.out.println("Attendance status for " + studentName + " in " + activityName + ": " + attendance.getAttendanceStatus());
+	            return;
+	        }
+	    }
+
+	    System.out.println("Attendance record not found");
+	}
+
+
 }
-//Hi guys im hamdan12

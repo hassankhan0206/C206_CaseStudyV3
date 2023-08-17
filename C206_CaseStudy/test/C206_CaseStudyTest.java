@@ -281,7 +281,7 @@ public class C206_CaseStudyTest {
 
     }
 
-    @Test(expected = IllegalArgumentException.class) //wafiy
+    @Test(expected = IllegalArgumentException.class) 
 
     public void testAddCCAError() {
 
@@ -291,5 +291,18 @@ public class C206_CaseStudyTest {
         addCCA(ccaList, "", "Invalid CCA", "No restrictions");
 
     }
+    @Test
+    public void testAddUser() {
+        ArrayList<User> userList = new ArrayList<>();
+        C206_CaseStudy.addUser(userList);
+
+        assertEquals(1, userList.size());
+
+        User addedUser = userList.get(0);
+        assertEquals("User1", addedUser.getUsername());
+        assertEquals("userpass", addedUser.getPassword());
+        assertEquals("Admin", addedUser.getRole());
+    }
+
 }
 
