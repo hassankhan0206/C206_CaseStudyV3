@@ -11,10 +11,6 @@ public class C206_CaseStudy {
 		ArrayList<User> userList = new ArrayList<User>();
 		ArrayList<Application> appList = new ArrayList<Application>();
 
-		ccaList.add(new CCA("NPCC", "NPCC is a fulfilling and enriching co-curricular activity which allows cadets to learn and grow."
-				, "Must have discipline!", 4));
-		ccaList.add(new CCA("Chinese Dance", "Understand the chinese culture by emersing yourself in their ways of dancing"
-				, "Must be able to speak chinese", 2));
 
 		userList.add(new User("admin", "adminpass", "Admin"));
 		userList.add(new User("teacher", "teacherpass", "Teacher"));
